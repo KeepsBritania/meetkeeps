@@ -1,0 +1,49 @@
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+header {
+    background: url('header-background.jpg') no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+header p {
+    font-size: 1.5rem;
+}
+
+#about img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+#about h2 {
+    margin-bottom: 20px;
+}
+
+#projects h2 {
+    margin-bottom: 40px;
+}
+
+.card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin-top: 10px;
+}
+
+.card-text {
+    font-size: 1rem;
+}

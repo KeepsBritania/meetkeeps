@@ -9,28 +9,98 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="bg-dark text-white text-center p-4">
-        <h1 class="animate__animated animate__fadeInDown">Keeper John Britania</h1>
-        <p class="animate__animated animate__fadeInUp">WordPress Developer</p>
+    <header class="text-center text-white">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Keeper John Britania</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#portfolio">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experience">Experience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonial">Testimonial</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="header-content py-5">
+            <h1 class="animate__animated animate__fadeInDown">I'm Keeper John Britania</h1>
+            <p class="animate__animated animate__fadeInUp">WordPress Developer</p>
+            <a href="#contact" class="btn btn-primary animate__animated animate__fadeInUp">Contact Me</a>
+        </div>
     </header>
 
     <section id="about" class="container my-5">
         <div class="row">
-            <div class="col-md-4 text-center">
-                <img src="your-photo.jpg" alt="Your Photo" class="rounded-circle img-fluid animate__animated animate__zoomIn">
-            </div>
-            <div class="col-md-8">
-                <h2 class="animate__animated animate__fadeInRight">About Me</h2>
-                <p class="animate__animated animate__fadeInRight">I am a WordPress developer with over 5 years of experience in building responsive and dynamic websites. My skills include HTML, CSS, JavaScript, and various WordPress themes and plugins.</p>
+            <div class="col-md-12 text-center">
+                <h2 class="animate__animated animate__fadeIn">About</h2>
+                <p class="animate__animated animate__fadeIn">I am a WordPress developer with over 5 years of experience in building responsive and dynamic websites. My skills include HTML, CSS, JavaScript, and various WordPress themes and plugins.</p>
             </div>
         </div>
     </section>
 
-    <section id="projects" class="container my-5">
-        <h2 class="text-center animate__animated animate__fadeIn">Projects</h2>
+    <section id="skills" class="container my-5">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h2 class="animate__animated animate__fadeIn">My Skills</h2>
+            </div>
+            <div class="col-md-3 animate__animated animate__fadeInUp">
+                <div class="card">
+                    <div class="card-body">
+                        <i class="fab fa-html5 fa-3x"></i>
+                        <h5 class="card-title">HTML5</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 animate__animated animate__fadeInUp">
+                <div class="card">
+                    <div class="card-body">
+                        <i class="fab fa-css3-alt fa-3x"></i>
+                        <h5 class="card-title">CSS3</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 animate__animated animate__fadeInUp">
+                <div class="card">
+                    <div class="card-body">
+                        <i class="fab fa-js fa-3x"></i>
+                        <h5 class="card-title">JavaScript</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 animate__animated animate__fadeInUp">
+                <div class="card">
+                    <div class="card-body">
+                        <i class="fab fa-wordpress fa-3x"></i>
+                        <h5 class="card-title">WordPress</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="container my-5">
         <div class="row">
-            <div class="col-md-4">
-                <div class="card animate__animated animate__fadeInLeft">
+            <div class="col-md-12 text-center">
+                <h2 class="animate__animated animate__fadeIn">Portfolio</h2>
+            </div>
+            <div class="col-md-4 animate__animated animate__fadeInLeft">
+                <div class="card">
                     <img src="project1.jpg" class="card-img-top" alt="Project 1">
                     <div class="card-body">
                         <h5 class="card-title">Project 1</h5>
@@ -38,8 +108,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card animate__animated animate__fadeInUp">
+            <div class="col-md-4 animate__animated animate__fadeInUp">
+                <div class="card">
                     <img src="project2.jpg" class="card-img-top" alt="Project 2">
                     <div class="card-body">
                         <h5 class="card-title">Project 2</h5>
@@ -47,8 +117,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card animate__animated animate__fadeInRight">
+            <div class="col-md-4 animate__animated animate__fadeInRight">
+                <div class="card">
                     <img src="project3.jpg" class="card-img-top" alt="Project 3">
                     <div class="card-body">
                         <h5 class="card-title">Project 3</h5>
@@ -56,6 +126,48 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section id="experience" class="container my-5">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 class="animate__animated animate__fadeIn">Experience</h2>
+            </div>
+            <div class="col-md-6 animate__animated animate__fadeInLeft">
+                <h5>2023</h5>
+                <h4>Senior WordPress Developer</h4>
+                <p>Worked on various high-profile projects, leading a team of developers to build responsive and dynamic websites using WordPress.</p>
+            </div>
+            <div class="col-md-6 animate__animated animate__fadeInRight">
+                <h5>2018</h5>
+                <h4>WordPress Developer</h4>
+                <p>Started my career as a WordPress developer, focusing on creating custom themes and plugins for clients.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonial" class="container my-5">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h2 class="animate__animated animate__fadeIn">Testimonial</h2>
+            </div>
+            <div class="col-md-12 animate__animated animate__fadeInUp">
+                <blockquote class="blockquote">
+                    <p class="mb-0">Keeper John Britania is a highly skilled and dedicated developer. His work is top-notch and he always goes the extra mile to ensure client satisfaction.</p>
+                    <footer class="blockquote-footer">Jane Doe, <cite title="Source Title">CEO of Tech Company</cite></footer>
+                </blockquote>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="container my-5 text-center">
+        <h2 class="animate__animated animate__fadeIn">Contact Me</h2>
+        <p class="animate__animated animate__fadeIn">Email: keeperjohn@example.com | Phone: 123-456-7890</p>
+        <div class="social-icons animate__animated animate__fadeInUp">
+            <a href="#" class="btn btn-primary"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="btn btn-primary"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="btn btn-primary"><i class="fab fa-linkedin-in"></i></a>
         </div>
     </section>
 

@@ -11214,7 +11214,7 @@ pre {
 }
 
 .carousel .carousel-indicators li.active {
-  box-shadow: 0 0 5px rgba(108, 117, 125, 0.3);
+  box-shadow: 0 0 -1px rgba(108, 117, 125, 0.3);
 }
 
 .contact {

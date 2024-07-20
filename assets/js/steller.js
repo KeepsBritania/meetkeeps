@@ -27,36 +27,3 @@ document.addEventListener('DOMContentLoaded', function() {
 		}, 100);
 	});
 });
-
-document.addEventListener('DOMContentLoaded', function() {
-    const sections = document.querySelectorAll('.section');
-    let currentIndex = 0;
-
-    function scrollToSection(index) {
-        if (index >= 0 && index < sections.length) {
-            sections[index].scrollIntoView({ behavior: 'smooth' });
-            currentIndex = index;
-        }
-    }
-
-    function handleScroll(event) {
-        const delta = event.deltaY || event.detail || -event.wheelDelta;
-
-        if (delta > 0) {
-            scrollToSection(currentIndex + 1);
-        } else {
-            scrollToSection(currentIndex - 1);
-        }
-    }
-
-    document.addEventListener('wheel', handleScroll);
-
-    // Optional: Add keyboard navigation
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'ArrowDown') {
-            scrollToSection(currentIndex + 1);
-        } else if (event.key === 'ArrowUp') {
-            scrollToSection(currentIndex - 1);
-        }
-    });
-});

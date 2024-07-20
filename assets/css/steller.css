@@ -56,6 +56,8 @@ body {
   color: #495057;
   text-align: left;
   background-color: #fff;
+  scroll-snap-type: y mandatory;
+    overflow-y: scroll;
 }
 
 [tabindex="-1"]:focus {
@@ -550,6 +552,7 @@ pre code {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  
 }
 
 @media (min-width: 576px) {

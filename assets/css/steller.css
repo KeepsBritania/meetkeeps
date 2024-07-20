@@ -159,6 +159,10 @@ sup {
   top: -.5em;
 }
 
+.progress-bar {
+  transition: width 1s ease-in-out;
+}
+
 a {
   color: #ff7a57;
   text-decoration: none;

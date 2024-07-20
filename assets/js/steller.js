@@ -30,3 +30,14 @@ $(document).ready(function(){
       	} 
     });
 });
+
+$(document).addEventListener('DOMContentLoaded', function() {
+	var progressBars = document.querySelectorAll('.progress-bar');
+	progressBars.forEach(function(bar) {
+		var width = bar.getAttribute('style').match(/width: (\d+)%/)[1];
+		bar.style.width = '0%';
+		setTimeout(function() {
+			bar.style.width = width + '%';
+		}, 100);
+	});
+});

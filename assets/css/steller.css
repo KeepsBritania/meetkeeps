@@ -11593,6 +11593,9 @@ pre {
   .modal-content {
     width: 90%;
   }
+  .navbar-nav .btn.btn-primary.rounded.ml-4 {
+    margin: 0 0 30px 0 !important;
+  }
 }
 
 .header .widget {

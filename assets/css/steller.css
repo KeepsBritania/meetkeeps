@@ -11590,6 +11590,9 @@ pre {
   .header .container .img-holder {
     display: none;
   }
+  .modal-content {
+    width: 90%;
+  }
 }
 
 .header .widget {
@@ -11646,6 +11649,7 @@ pre {
   .header .widget .widget-item p {
     font-size: 13px;
   }
+
 }
 
 .header-title {

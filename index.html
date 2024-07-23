@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
     <!-- Bootstrap + Steller main styles -->
 	<link rel="stylesheet" href="assets/css/steller.css">
+    <!-- particles bg -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
 
@@ -46,47 +49,49 @@
     </nav>
     <!-- End of page navibation -->
 
-    <!-- Page Header -->
-    <header class="header" id="home">
-        <div class="container">
-            <div class="infos">
-                <h6 class="subtitle">hello,I'm</h6>
-                <h6 class="title">Keeper John</h6>
-                <p>Web Developer/Automation Hero</p>
+   <!-- Page Header -->
+<header class="header" id="home">
+    <div id="particles-js"></div>
+    <div class="container">
+        <div class="infos">
+            <h6 class="subtitle">hello, I'm</h6>
+            <h6 class="title">Keeper John</h6>
+            <p>Web Developer/Automation Hero</p>
 
-                <div class="buttons pt-3">
-                    <a class="nav-link-btn " href="#contact"><button class="btn btn-primary rounded">HIRE ME</button></a>
-                    <a href="assets/KEEPERJOHN_BRITANIA_RESUME.pdf" target="_blank"><button class="btn btn-dark rounded">DOWNLOAD CV</button></a>
-                </div>      
-
-                <div class="socials mt-4">
-                    <a class="social-item" href="https://web.facebook.com/keepsbritania/" target="_blank"><i class="ti-facebook"></i></a>
-                    <a class="social-item" href="https://www.linkedin.com/in/keeper-john-britania-327765195/" target="_blank"><i class="ti-linkedin"></i></a>
-                    <a class="social-item" href="https://github.com/KeepsBritania/" target="_blank"><i class="ti-github"></i></a>
-                </div>
-            </div>              
-            <div class="img-holder">
-                <img src="assets/imgs/person.webp" alt="">
+            <div class="buttons pt-3">
+                <a class="nav-link-btn" href="#contact"><button class="btn btn-primary rounded">HIRE ME</button></a>
+                <a href="assets/KEEPERJOHN_BRITANIA_RESUME.pdf" target="_blank"><button class="btn btn-dark rounded">DOWNLOAD CV</button></a>
             </div>      
-        </div>  
 
-        <!-- Header-widget -->
-        <div class="widget">
-            <div class="widget-item">
-                <h2>50+</h2>
-                <p>Sites Created</p>
+            <div class="socials mt-4">
+                <a class="social-item" href="https://web.facebook.com/keepsbritania/" target="_blank"><i class="ti-facebook"></i></a>
+                <a class="social-item" href="https://www.linkedin.com/in/keeper-john-britania-327765195/" target="_blank"><i class="ti-linkedin"></i></a>
+                <a class="social-item" href="https://github.com/KeepsBritania/" target="_blank"><i class="ti-github"></i></a>
             </div>
-            <div class="widget-item">
-                <h2>100+</h2>
-                <p>Satisfied Clients</p>
-            </div>
-            <div class="widget-item">
-                <h2>100+</h2>
-                <p>Projects Completed</p>
-            </div>
+        </div>              
+        <div class="img-holder">
+            <img src="assets/imgs/person.webp" alt="">
+        </div>      
+    </div>  
+
+    <!-- Header-widget -->
+    <div class="widget">
+        <div class="widget-item">
+            <h2>50+</h2>
+            <p>Sites Created</p>
         </div>
-    </header>
-    <!-- End of Page Header -->
+        <div class="widget-item">
+            <h2>100+</h2>
+            <p>Satisfied Clients</p>
+        </div>
+        <div class="widget-item">
+            <h2>100+</h2>
+            <p>Projects Completed</p>
+        </div>
+    </div>
+</header>
+<!-- End of Page Header -->
+
     
     <!-- About section -->
     <section id="about" class="section mt-3">
@@ -630,6 +635,120 @@
         });
         </script>
         
-
+        <script>
+            particlesJS('particles-js',
+              {
+                "particles": {
+                  "number": {
+                    "value": 80,
+                    "density": {
+                      "enable": true,
+                      "value_area": 800
+                    }
+                  },
+                  "color": {
+                    "value": "#ffffff"
+                  },
+                  "shape": {
+                    "type": "circle",
+                    "stroke": {
+                      "width": 0,
+                      "color": "#000000"
+                    },
+                    "polygon": {
+                      "nb_sides": 5
+                    },
+                    "image": {
+                      "src": "img/github.svg",
+                      "width": 100,
+                      "height": 100
+                    }
+                  },
+                  "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                      "enable": false,
+                      "speed": 1,
+                      "opacity_min": 0.1,
+                      "sync": false
+                    }
+                  },
+                  "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                      "enable": false,
+                      "speed": 40,
+                      "size_min": 0.1,
+                      "sync": false
+                    }
+                  },
+                  "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                  },
+                  "move": {
+                    "enable": true,
+                    "speed": 6,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                      "enable": false,
+                      "rotateX": 600,
+                      "rotateY": 1200
+                    }
+                  }
+                },
+                "interactivity": {
+                  "detect_on": "canvas",
+                  "events": {
+                    "onhover": {
+                      "enable": true,
+                      "mode": "repulse"
+                    },
+                    "onclick": {
+                      "enable": true,
+                      "mode": "push"
+                    },
+                    "resize": true
+                  },
+                  "modes": {
+                    "grab": {
+                      "distance": 400,
+                      "line_linked": {
+                        "opacity": 1
+                      }
+                    },
+                    "bubble": {
+                      "distance": 400,
+                      "size": 40,
+                      "duration": 2,
+                      "opacity": 8,
+                      "speed": 3
+                    },
+                    "repulse": {
+                      "distance": 200,
+                      "duration": 0.4
+                    },
+                    "push": {
+                      "particles_nb": 4
+                    },
+                    "remove": {
+                      "particles_nb": 2
+                    }
+                  }
+                },
+                "retina_detect": true
+              }
+            );
+            </script>
+            
 </body>
 </html>

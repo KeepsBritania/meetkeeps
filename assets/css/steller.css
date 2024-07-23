@@ -11587,7 +11587,6 @@ pre {
 }
 .header {
   position: relative;
-  overflow: hidden;
 }
 
 @media (max-width: 991.98px) {

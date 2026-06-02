@@ -1,776 +1,819 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" type="image/x-icon" href="assets/imgs/logo-sm.svg">
-    <title>Keeper John Britania | Portfolio</title>
-    <!-- font icons -->
-    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
-    <!-- Bootstrap + Steller main styles -->
-	<link rel="stylesheet" href="assets/css/steller.css">
-    <!-- particles bg -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="assets/imgs/logo-sm.svg">
+  <title>Keeper John Britania | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #fafafa;
+      --surface:   #ffffff;
+      --text:      #1a1a1a;
+      --muted:     #6b7280;
+      --accent:    #2563eb;
+      --accent-lt: #eff6ff;
+      --border:    #e5e7eb;
+      --radius:    14px;
+      --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ─── Utility ───────────────────────────────────────────── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .section    { padding: 96px 0; }
+    .text-center { text-align: center; }
+
+    .label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 520px;
+      margin: 0 auto 56px;
+    }
+
+    /* ─── Buttons ───────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all var(--transition);
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,99,235,.3); }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1.5px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+    .btn-light {
+      background: #fff;
+      color: var(--accent);
+    }
+    .btn-light:hover { background: var(--accent-lt); transform: translateY(-2px); }
+
+    /* ─── Navbar ────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 18px 0;
+      transition: all var(--transition);
+    }
+    nav.scrolled {
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 1px 0 var(--border);
+      padding: 12px 0;
+    }
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo img { height: 32px; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: all var(--transition);
+    }
+    .nav-links a:hover { color: var(--text); background: var(--border); }
+    .nav-links .btn { margin-left: 8px; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all var(--transition);
+    }
+
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 16px; right: 16px;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        flex-direction: column;
+        padding: 16px;
+        box-shadow: 0 16px 48px rgba(0,0,0,.08);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 10px 16px; width: 100%; }
+    }
+
+    /* ─── Hero ──────────────────────────────────────────────── */
+    #home {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+      overflow: hidden;
+    }
+    #particles-js {
+      position: absolute;
+      inset: 0;
+      opacity: 0.6;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 64px;
+      padding: 120px 0 80px;
+    }
+    .hero-text .label { color: rgba(255,255,255,0.6); }
+    .hero-text h1 {
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -1.5px;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+    .hero-text h1 span { color: #60a5fa; }
+    .hero-text p {
+      color: rgba(255,255,255,0.65);
+      font-size: 18px;
+      margin-bottom: 36px;
+    }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-socials {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+    }
+    .hero-socials a {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.7);
+      font-size: 15px;
+      transition: all var(--transition);
+    }
+    .hero-socials a:hover { background: var(--accent); color: #fff; transform: translateY(-2px); }
+    .hero-img {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+    .hero-img img {
+      width: 380px;
+      height: 380px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid rgba(255,255,255,0.15);
+      box-shadow: 0 32px 80px rgba(0,0,0,.4);
+    }
+    .hero-stats {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 40px;
+      margin-top: 8px;
+    }
+    .stat-item {
+      padding: 24px 0;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-item h2 {
+      font-size: 36px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -1px;
+    }
+    .stat-item p { color: rgba(255,255,255,0.5); font-size: 13px; margin-top: 4px; }
+
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; padding: 100px 0 60px; }
+      .hero-img { order: -1; }
+      .hero-img img { width: 220px; height: 220px; }
+      .hero-btns { justify-content: center; }
+      .hero-socials { justify-content: center; }
+      .hero-stats { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* ─── About ─────────────────────────────────────────────── */
+    #about { background: var(--surface); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .about-img img {
+      width: 100%;
+      border-radius: var(--radius);
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+    .about-text .name {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .about-text .role {
+      color: var(--accent);
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+    .about-text p { color: var(--muted); margin-bottom: 16px; }
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .about-img img { max-width: 200px; border-radius: 50%; }
+    }
+
+    /* ─── Services ──────────────────────────────────────────── */
+    #service { background: var(--bg); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 24px;
+      text-align: center;
+      transition: all var(--transition);
+      cursor: default;
+    }
+    .service-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(37,99,235,.08);
+    }
+    .service-card i {
+      font-size: 28px;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .service-card h5 {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    /* ─── Skills ────────────────────────────────────────────── */
+    #skills { background: var(--surface); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px 64px;
+    }
+    .skill-item label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .skill-item label span { color: var(--muted); }
+    .progress {
+      background: var(--border);
+      border-radius: 99px;
+      height: 6px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 99px;
+      width: 0;
+      transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+    }
+    @media (max-width: 640px) { .skills-grid { grid-template-columns: 1fr; } }
+
+    /* ─── Portfolio ─────────────────────────────────────────── */
+    #portfolio { background: var(--bg); }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 768px) { .portfolio-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .portfolio-grid { grid-template-columns: 1fr; } }
+    .portfolio-item {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: var(--border);
+    }
+    .portfolio-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--transition);
+    }
+    .portfolio-item:hover img { transform: scale(1.07); }
+    .portfolio-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(15,23,42,.75);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      opacity: 0;
+      transition: opacity var(--transition);
+      backdrop-filter: blur(4px);
+    }
+    .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+    .portfolio-overlay h5 { color: #fff; font-size: 16px; font-weight: 600; }
+    .portfolio-overlay-links { display: flex; gap: 12px; }
+    .portfolio-overlay-links a {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 14px;
+      transition: all var(--transition);
+    }
+    .portfolio-overlay-links a:hover { background: var(--accent); border-color: var(--accent); }
+
+    /* ─── Modal ─────────────────────────────────────────────── */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal-box {
+      background: var(--surface);
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 520px;
+      width: 100%;
+      position: relative;
+      box-shadow: 0 32px 80px rgba(0,0,0,.25);
+      animation: fadeUp 0.35s ease;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px; right: 16px;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: var(--border);
+      cursor: pointer;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--transition);
+    }
+    .modal-close:hover { background: #e5e7eb; }
+    .modal-box h4 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+    .modal-box p { color: var(--muted); font-size: 15px; margin-bottom: 10px; }
+    .modal-box a { color: var(--accent); font-weight: 500; }
+
+    /* ─── Testimonial ───────────────────────────────────────── */
+    #testmonial { background: var(--surface); }
+    .testimonial-track {
+      display: flex;
+      overflow: hidden;
+      position: relative;
+    }
+    .testimonial-slide {
+      flex: 0 0 100%;
+      transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+    }
+    .testimonial-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .testimonial-card img {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 20px;
+      border: 2px solid var(--border);
+    }
+    .testimonial-card p { color: var(--muted); font-size: 16px; margin-bottom: 24px; font-style: italic; }
+    .testimonial-card .t-name { font-weight: 700; font-size: 16px; }
+    .testimonial-card .t-role { color: var(--muted); font-size: 13px; margin-top: 4px; }
+    .testimonial-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 28px;
+    }
+    .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+      cursor: pointer;
+      transition: all var(--transition);
+      border: none;
+    }
+    .dot.active { background: var(--accent); width: 24px; border-radius: 4px; }
+
+    /* ─── Hire Me Banner ────────────────────────────────────── */
+    #hire-banner {
+      background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+      padding: 72px 0;
+    }
+    .hire-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .hire-inner h3 { font-size: 28px; font-weight: 700; color: #fff; }
+    .hire-inner p { color: rgba(255,255,255,0.7); margin-top: 8px; }
+
+    /* ─── Contact ───────────────────────────────────────────── */
+    #contact { background: var(--bg); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      text-align: left;
+    }
+    @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
+    .contact-form-wrap .form-label { font-size: 13px; font-weight: 500; color: var(--muted); margin-bottom: 6px; display: block; }
+    .form-control {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: 15px;
+      font-family: inherit;
+      background: var(--surface);
+      color: var(--text);
+      transition: border-color var(--transition), box-shadow var(--transition);
+      margin-bottom: 20px;
+      outline: none;
+    }
+    .form-control:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(37,99,235,.1); }
+    textarea.form-control { resize: vertical; min-height: 140px; }
+    #status { margin-top: 12px; font-size: 14px; color: var(--muted); }
+    .contact-info-list { display: flex; flex-direction: column; gap: 28px; margin-top: 8px; }
+    .ci-item { display: flex; gap: 16px; align-items: flex-start; }
+    .ci-icon {
+      width: 44px; height: 44px;
+      background: var(--accent-lt);
+      color: var(--accent);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .ci-item h5 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .ci-item p { color: var(--muted); font-size: 14px; }
+    .map-wrap {
+      margin-top: 48px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      height: 320px;
+    }
+    .map-wrap iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+    /* ─── Footer ────────────────────────────────────────────── */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-inner p { font-size: 13px; color: var(--muted); }
+    .footer-socials { display: flex; gap: 10px; }
+    .footer-socials a {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 14px;
+      transition: all var(--transition);
+    }
+    .footer-socials a:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    /* ─── Scroll-reveal ─────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+  </style>
 </head>
-<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
 
-    <!-- Page navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" data-spy="affix" data-offset-top="0">
-        <div class="container">
-            <a class="navbar-brand" href="#"><img src="assets/imgs/logo.svg" alt=""></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+<body id="body-top">
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto align-items-center">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#service">Service</a>
-                    </li>                   
-                    <li class="nav-item">
-                        <a class="nav-link" href="#portfolio">Portfolio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#testmonial">Testimonial</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link-btn btn btn-primary rounded ml-4" href="#contact">Contact Me</a>
-                    </li>
-                </ul>
-            </div>
-        </div>          
-    </nav>
-    <!-- End of page navibation -->
+  <!-- ── Navbar ─────────────────────────────────────────────── -->
+  <nav id="navbar">
+    <div class="container">
+      <a class="nav-logo" href="#home"><img src="assets/imgs/logo.svg" alt="Keeper John"></a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#service">Service</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#testmonial">Testimonial</a></li>
+        <li><a href="#contact" class="btn btn-primary">Contact Me</a></li>
+      </ul>
+    </div>
+  </nav>
 
-   <!-- Page Header -->
-<header class="header" id="home">
+  <!-- ── Hero ───────────────────────────────────────────────── -->
+  <section id="home">
     <div id="particles-js"></div>
     <div class="container">
-        <div class="infos">
-            <h6 class="subtitle">hello, I'm</h6>
-            <h6 class="title">Keeper John</h6>
-            <p>Web Developer/Automation Hero</p>
-
-            <div class="buttons pt-3">
-                <a class="nav-link-btn" href="#contact"><button class="btn btn-primary rounded">HIRE ME</button></a>
-                <a href="assets/KEEPER_JOHNBRITANIA_Resume.pdf" target="_blank"><button class="btn btn-dark rounded">DOWNLOAD CV</button></a>
-            </div>      
-
-            <div class="socials mt-4">
-                <a class="social-item" href="https://web.facebook.com/keepsbritania/" target="_blank"><i class="ti-facebook"></i></a>
-                <a class="social-item" href="https://www.linkedin.com/in/keeper-john-britania-327765195/" target="_blank"><i class="ti-linkedin"></i></a>
-                <a class="social-item" href="https://github.com/KeepsBritania/" target="_blank"><i class="ti-github"></i></a>
-            </div>
-        </div>              
-        <div class="img-holder">
-            <img src="assets/imgs/person.webp" alt="">
-        </div>      
-    </div>  
-
-    <!-- Header-widget -->
-    <div class="widget">
-        <div class="widget-item">
-            <h2>50+</h2>
-            <p>Sites Created</p>
+      <div class="hero-inner">
+        <div class="hero-text">
+          <p class="label">hello, I'm</p>
+          <h1>Keeper<br><span>John</span></h1>
+          <p>Web Developer / Automation Hero</p>
+          <div class="hero-btns">
+            <a href="#contact" class="btn btn-primary">Hire Me</a>
+            <a href="assets/KEEPER_JOHNBRITANIA_Resume.pdf" target="_blank" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,.3);">Download CV</a>
+          </div>
+          <div class="hero-socials">
+            <a href="https://web.facebook.com/keepsbritania/" target="_blank" aria-label="Facebook"><i class="ti-facebook"></i></a>
+            <a href="https://www.linkedin.com/in/keeper-john-britania-327765195/" target="_blank" aria-label="LinkedIn"><i class="ti-linkedin"></i></a>
+            <a href="https://github.com/KeepsBritania/" target="_blank" aria-label="GitHub"><i class="ti-github"></i></a>
+          </div>
         </div>
-        <div class="widget-item">
-            <h2>100+</h2>
-            <p>Satisfied Clients</p>
+        <div class="hero-img">
+          <img src="assets/imgs/person.webp" alt="Keeper John Britania">
         </div>
-        <div class="widget-item">
-            <h2>100+</h2>
-            <p>Projects Completed</p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <h2>50+</h2>
+          <p>Sites Created</p>
         </div>
+        <div class="stat-item">
+          <h2>100+</h2>
+          <p>Satisfied Clients</p>
+        </div>
+        <div class="stat-item">
+          <h2>100+</h2>
+          <p>Projects Completed</p>
+        </div>
+      </div>
     </div>
-</header>
-<!-- End of Page Header -->
+  </section>
 
-    
-    <!-- About section -->
-    <section id="about" class="section mt-3">
-        <div class="container mt-5">
-            <div class="row text-center text-md-left">
-                <div class="col-md-3">
-                    <img src="assets/imgs/avatar-5.jpg" alt="" class="img-thumbnail mb-4">
-                </div>
-                <div class="pl-md-4 col-md-9">
-                    <h6 class="title">Keeper John</h6>
-                    <p class="subtitle">Web Developer/Automation Hero</p>
-                    <p>Hello! I'm Keeper John Britania, a passionate and experienced web developer specializing in CMS development. Since 2018, I've been honing my skills in creating and managing websites using various Content Management Systems (CMS) including WordPress, HubSpot, ClickFunnels, GoHighLevel, and Shopify. With a strong foundation in web development, I have a proven track record of delivering high-quality, functional, and visually appealing websites that cater to the unique needs of my clients. My expertise extends beyond just building websites; I excel in email automation, ensuring seamless and efficient communication for businesses.</p>
-                    <p>One of the aspects I love most about my job is the ability to work remotely. Equipped with my trusty laptop, I have the freedom to work from anywhere, providing my clients with flexibility and timely solutions. I am passionate about what I do and continually strive to stay updated with the latest industry trends and technologies. My commitment to excellence and my love for web development drive me to create impactful digital experiences that help businesses grow and succeed. Let's connect and bring your digital vision to life!</p>
-                     <a href="assets/KEEPER_JOHNBRITANIA_Resume.pdf" target="_blank"><button class="btn btn-dark rounded">DOWNLOAD CV</button></a>         
-                </div>
-            </div>
+  <!-- ── About ──────────────────────────────────────────────── -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="about-grid reveal">
+        <div class="about-img">
+          <img src="assets/imgs/avatar-5.jpg" alt="Keeper John Britania">
         </div>
-    </section>
-
-    <!-- Service section -->
-    <section id="service" class="section">
-        <div class="container text-center">
-            <h6 class="subtitle">Service</h6>
-            <h6 class="section-title mb-4">Here's what I can do to help</h6>
-            <p class="mb-5 pb-4">Expert Solutions to Elevate Your Online Presence</p>
-            <div class="row">
-                <div class="col-sm-6 col-md-3 mb-4">
-                    <div class="custom-card card border">
-                        <div class="card-body">
-                            <i class="icon ti-html5"></i> <!-- Updated icon for HTML/CSS -->
-                            <h5>HTML/CSS</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 mb-4">
-                    <div class="custom-card card border">
-                        <div class="card-body">
-                            <i class="icon ti-email"></i> <!-- Updated icon for Email Automation -->
-                            <h5>Email Automation/Gohighlevel</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 mb-4">
-                    <div class="custom-card card border">
-                        <div class="card-body">
-                            <i class="icon ti-mobile"></i> <!-- Updated icon for Responsive Website -->
-                            <h5>Responsive Website</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 mb-4">
-                    <div class="custom-card card border">
-                        <div class="card-body">
-                            <i class="icon ti-bar-chart-alt"></i> <!-- Updated icon for SEO -->
-                            <h5>SEO</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6 col-md-3 mb-4">
-                    <div class="custom-card card border">
-                        <div class="card-body">
-                            <i class="icon ti-settings"></i> <!-- Updated icon for Site Optimization -->
-                            <h5>Site Optimization</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 mb-4">
-                    <div class="custom-card card border">
-                        <div class="card-body">
-                            <i class="icon ti-support"></i> <!-- Updated icon for Site Maintenance -->
-                            <h5>Site Maintenance</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 mb-4">
-                    <div class="custom-card card border">
-                        <div class="card-body">
-                            <i class="icon ti-plug"></i> <!-- Updated icon for App Integrations -->
-                            <h5>App Integrations</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 mb-4">
-                    <div class="custom-card card border">
-                        <div class="card-body">
-                            <i class="icon ti-wordpress"></i> <!-- Updated icon for WordPress Site Build -->
-                            <h5>WordPress Site Build</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
+        <div class="about-text">
+          <p class="label">About Me</p>
+          <h2 class="name">Keeper John</h2>
+          <p class="role">Web Developer / Automation Hero</p>
+          <p>Hello! I'm Keeper John Britania, a passionate and experienced web developer specializing in CMS development. Since 2018, I've been honing my skills in creating and managing websites using various Content Management Systems (CMS) including WordPress, HubSpot, ClickFunnels, GoHighLevel, and Shopify. With a strong foundation in web development, I have a proven track record of delivering high-quality, functional, and visually appealing websites that cater to the unique needs of my clients. My expertise extends beyond just building websites; I excel in email automation, ensuring seamless and efficient communication for businesses.</p>
+          <p>One of the aspects I love most about my job is the ability to work remotely. Equipped with my trusty laptop, I have the freedom to work from anywhere, providing my clients with flexibility and timely solutions. I am passionate about what I do and continually strive to stay updated with the latest industry trends and technologies. My commitment to excellence and my love for web development drive me to create impactful digital experiences that help businesses grow and succeed. Let's connect and bring your digital vision to life!</p>
+          <a href="assets/KEEPER_JOHNBRITANIA_Resume.pdf" target="_blank" class="btn btn-outline" style="margin-top:12px;">Download CV</a>
         </div>
-    </section>
-    <!-- End of Sectoin -->
+      </div>
+    </div>
+  </section>
 
-
-<!-- Skills section -->
-<section class="section">
+  <!-- ── Services ───────────────────────────────────────────── -->
+  <section id="service" class="section">
     <div class="container text-center">
-        <h6 class="subtitle">Skills</h6>
-        <h6 class="section-title mb-4">Why Choose Me</h6>
-        <p class="mb-5 pb-4">Your Trusted Partner for Quality Web Development and Email Automation</p>
-
-        <div class="row text-left">
-            <div class="col-sm-6">
-                <h6 class="mb-3">HTML/CSS</h6>
-                <div class="progress">
-                    <div class="progress-bar bg-primary" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"><span>90%</span></div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <h6 class="mb-3">JavaScript</h6>
-                <div class="progress">
-                    <div class="progress-bar bg-primary" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"><span>85%</span></div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <h6 class="mb-3">Responsive Web Design</h6>
-                <div class="progress">
-                    <div class="progress-bar bg-primary" role="progressbar" style="width: 88%;" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"><span>88%</span></div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <h6 class="mb-3">SEO Optimization</h6>
-                <div class="progress">
-                    <div class="progress-bar bg-primary" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"><span>90%</span></div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <h6 class="mb-3">WordPress Development</h6>
-                <div class="progress">
-                    <div class="progress-bar bg-primary" role="progressbar" style="width: 91%;" aria-valuenow="91" aria-valuemin="0" aria-valuemax="100"><span>91%</span></div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <h6 class="mb-3">PHP/MySQL</h6>
-                <div class="progress">
-                    <div class="progress-bar bg-primary" role="progressbar" style="width: 84%;" aria-valuenow="84" aria-valuemin="0" aria-valuemax="100"><span>84%</span></div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <h6 class="mb-3">Shopify Development</h6>
-                <div class="progress">
-                    <div class="progress-bar bg-primary" role="progressbar" style="width: 87%;" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100"><span>87%</span></div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <h6 class="mb-3">Email Automation</h6>
-                <div class="progress">
-                    <div class="progress-bar bg-primary" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"><span>85%</span></div>
-                </div>
-            </div>
-        </div>
+      <p class="label reveal">Service</p>
+      <h2 class="section-title reveal reveal-delay-1">Here's what I can do to help</h2>
+      <p class="section-sub reveal reveal-delay-2">Expert Solutions to Elevate Your Online Presence</p>
+      <div class="services-grid">
+        <div class="service-card reveal reveal-delay-1"><i class="ti-html5"></i><h5>HTML / CSS</h5></div>
+        <div class="service-card reveal reveal-delay-2"><i class="ti-email"></i><h5>Email Automation / GoHighLevel</h5></div>
+        <div class="service-card reveal reveal-delay-3"><i class="ti-mobile"></i><h5>Responsive Website</h5></div>
+        <div class="service-card reveal reveal-delay-4"><i class="ti-bar-chart-alt"></i><h5>SEO</h5></div>
+        <div class="service-card reveal reveal-delay-1"><i class="ti-settings"></i><h5>Site Optimization</h5></div>
+        <div class="service-card reveal reveal-delay-2"><i class="ti-support"></i><h5>Site Maintenance</h5></div>
+        <div class="service-card reveal reveal-delay-3"><i class="ti-plug"></i><h5>App Integrations</h5></div>
+        <div class="service-card reveal reveal-delay-4"><i class="ti-wordpress"></i><h5>WordPress Site Build</h5></div>
+      </div>
     </div>
-</section>
-<!-- End of Skills section -->
+  </section>
 
-
-
- <!-- Portfolio section -->
-<section id="portfolio" class="section">
+  <!-- ── Skills ─────────────────────────────────────────────── -->
+  <section id="skills" class="section">
     <div class="container text-center">
-        <h6 class="subtitle">Portfolio</h6>
-        <h6 class="section-title mb-4">Check My Wonderful Works</h6>
-        <p class="mb-5 pb-4">Here are some of the amazing projects I've worked on,<br> showcasing my skills in web development.</p>
-
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="img-wrapper">
-                    <img src="assets/imgs/folio-1.jpg" alt="">
-                    <div class="overlay">
-                        <div class="overlay-infos">
-                            <h5>Copy Ninjas</h5>
-                            <a href="javascript:void(0)" class="open-modal" data-modal="modal1"><i class="ti-zoom-in"></i></a>
-                            <a href="https://copyninjas.io/" target="_blank"><i class="ti-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="img-wrapper">
-                    <img src="assets/imgs/folio-2.jpg" alt="">
-                    <div class="overlay">
-                        <div class="overlay-infos">
-                            <h5>Digital Solopreneur</h5>
-                            <a href="javascript:void(0)" class="open-modal" data-modal="modal2"><i class="ti-zoom-in"></i></a>
-                            <a href="https://digitalsolopreneur.com/" target="_blank"><i class="ti-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="img-wrapper">
-                    <img src="assets/imgs/folio-3.jpg" alt="">
-                    <div class="overlay">
-                        <div class="overlay-infos">
-                            <h5>Culleys</h5>
-                            <a href="javascript:void(0)" class="open-modal" data-modal="modal3"><i class="ti-zoom-in"></i></a>
-                            <a href="https://culleys.co.nz/" target="_blank"><i class="ti-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="img-wrapper">
-                    <img src="assets/imgs/folio-4.jpg" alt="">
-                    <div class="overlay">
-                        <div class="overlay-infos">
-                            <h5>Hire Engage</h5>
-                            <a href="javascript:void(0)" class="open-modal" data-modal="modal4"><i class="ti-zoom-in"></i></a>
-                            <a href="https://hireengage.com/" target="_blank"><i class="ti-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-		<div class="img-wrapper">
-		    <img src="assets/imgs/mancandy.png" alt="">
-		    <div class="overlay">
-			<div class="overlay-infos">
-			    <h5>Man Candy Beef Jerky</h5>
-			    <a href="javascript:void(0)" class="open-modal" data-modal="modal7"><i class="ti-zoom-in"></i></a>
-			    <a href="https://joonsolutions.com/" target="_blank"><i class="ti-link"></i></a>
-			</div>
-	            </div>
-		</div>
-            </div>
-            <div class="col-sm-4">
-                <div class="img-wrapper">
-                    <img src="assets/imgs/folio-5.jpg" alt="">
-                    <div class="overlay">
-                        <div class="overlay-infos">
-                            <h5>Inbox Society</h5>
-                            <a href="javascript:void(0)" class="open-modal" data-modal="modal5"><i class="ti-zoom-in"></i></a>
-                            <a href="https://www.inboxsociety.com/" target="_blank"><i class="ti-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="img-wrapper">
-                    <img src="assets/imgs/folio-6.jpg" alt="">
-                    <div class="overlay">
-                        <div class="overlay-infos">
-                            <h5>Joons Solutions</h5>
-                            <a href="javascript:void(0)" class="open-modal" data-modal="modal6"><i class="ti-zoom-in"></i></a>
-                            <a href="https://joonsolutions.com/" target="_blank"><i class="ti-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-	 </div>
-	
+      <p class="label reveal">Skills</p>
+      <h2 class="section-title reveal reveal-delay-1">Why Choose Me</h2>
+      <p class="section-sub reveal reveal-delay-2">Your Trusted Partner for Quality Web Development and Email Automation</p>
+      <div class="skills-grid">
+        <div class="skill-item reveal">
+          <label>HTML/CSS <span>90%</span></label>
+          <div class="progress"><div class="progress-bar" data-width="90"></div></div>
         </div>
-
-        <!-- Modal Structures -->
-        <div id="modal1" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h4>Copy Ninjas</h4>
-                <p>For this project, we utilized WordPress and hosted it on an AWS server. Built with Elementor, it includes various integrated plugins to enhance functionality and user experience. The combination of AWS hosting and Elementor's flexibility ensured a robust and scalable website solution.</p>
-                <p><a href="https://copyninjas.io/" target="_blank">Visit Copy Ninjas</a></p>
-            </div>
+        <div class="skill-item reveal reveal-delay-1">
+          <label>JavaScript <span>85%</span></label>
+          <div class="progress"><div class="progress-bar" data-width="85"></div></div>
         </div>
-        <div id="modal2" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h4>Digital Solopreneur</h4>
-                <p>Developed with WordPress and Thrive Builder, this is one of the WordPress sites I created for a previous employer. The project focused on creating a dynamic and interactive site, incorporating advanced design elements and optimizing it for speed and SEO.</p>
-                <p><a href="https://digitalsolopreneur.com/" target="_blank">Visit Digital Solopreneur</a></p>
-            </div>
+        <div class="skill-item reveal reveal-delay-2">
+          <label>Responsive Web Design <span>88%</span></label>
+          <div class="progress"><div class="progress-bar" data-width="88"></div></div>
         </div>
-        <div id="modal3" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h4>Culleys</h4>
-                <p>Using the Shopify Debut theme, this eCommerce site was developed during my tenure at a previous company. The project involved customizing the theme to meet client specifications, integrating necessary plugins, and optimizing the site for performance and user experience.</p>
-                <p><a href="https://culleys.co.nz/" target="_blank">Visit Culleys</a></p>
-            </div>
+        <div class="skill-item reveal reveal-delay-3">
+          <label>SEO Optimization <span>90%</span></label>
+          <div class="progress"><div class="progress-bar" data-width="90"></div></div>
         </div>
-        <div id="modal4" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h4>Hire Engage</h4>
-                <p>A standout project using WordPress and Elementor Builder, where we implemented GoHighLevel integration for enhanced functionality. This project demonstrated my ability to integrate CRM tools, streamline business processes, and deliver a highly efficient and user-friendly website.</p>
-                <p><a href="https://hireengage.com/" target="_blank">Visit Hire Engage</a></p>
-            </div>
+        <div class="skill-item reveal">
+          <label>WordPress Development <span>91%</span></label>
+          <div class="progress"><div class="progress-bar" data-width="91"></div></div>
         </div>
-        <div id="modal5" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h4>Inbox Society</h4>
-                <p>This project was built on the Kartra platform, showcasing one of the SaaS solutions I developed at a former company. It involved creating and managing complex marketing funnels, integrating email automation, and ensuring seamless user experience for a diverse client base.</p>
-                <p><a href="https://www.inboxsociety.com/" target="_blank">Visit Inbox Society</a></p>
-            </div>
+        <div class="skill-item reveal reveal-delay-1">
+          <label>PHP/MySQL <span>84%</span></label>
+          <div class="progress"><div class="progress-bar" data-width="84"></div></div>
         </div>
-        <div id="modal6" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h4>Joons Solutions</h4>
-                <p>This project involved WordPress, Elementor Builder, and various job listings plugins for a comprehensive site solution. It included customizing the job listings functionality, ensuring smooth user interactions, and optimizing the site for search engines and user engagement.</p>
-                <p><a href="https://joonsolutions.com/" target="_blank">Visit Joons Solutions</a></p>
-            </div>
+        <div class="skill-item reveal reveal-delay-2">
+          <label>Shopify Development <span>87%</span></label>
+          <div class="progress"><div class="progress-bar" data-width="87"></div></div>
         </div>
-	 <div id="modal7" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h4>Man Candy</h4>
-                <p>This project is one of the websites I successfully converted from Figma designs into a fully functional Shopify store: Man Candy Beef Jerky. The development included implementing custom functionalities on both the front end and back end, tailored to meet the specific requirements of an e-commerce platform. From pixel-perfect design translation to optimizing user experience and integrating advanced features, this project showcases my expertise in creating responsive and efficient Shopify websites.</p>
-                <p><a href="https://mancandybeefjerky.com/" target="_blank">Visit Man Candy</a></p>
-            </div>
+        <div class="skill-item reveal reveal-delay-3">
+          <label>Email Automation <span>85%</span></label>
+          <div class="progress"><div class="progress-bar" data-width="85"></div></div>
         </div>
+      </div>
     </div>
-</section>
-<!-- End of portfolio section -->
+  </section>
 
-
-    <!-- Testmonial Section -->
-    <section id="testmonial" class="section">
-        <div class="container text-center">
-            <h6 class="subtitle">Testmonial</h6>
-            <h6 class="section-title mb-4">What People Say About Me</h6>
-            <p class="mb-5 pb-4">Explore some of the projects I’ve worked on to see my <br>expertise in action and get inspired by my previous work.</p>
-
-
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-<!--                     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
-                </ol>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="card testmonial-card border">
-                            <div class="card-body">
-                                <img src="assets/imgs/avatar-1.jpg" alt="">
-                                <p>John is a hardworking and dedicated professional. He consistently troubleshoots our issues, whether they are technical or design-related, with expertise and efficiency. His skills and knowledge have been of great value to our business
-                                </p>
-                                <h1 class="title">Renee Ngo</h1>
-                                <h1 class="subtitle">Operations and Project Head, Digital Soloprenuer</h1>
-                            </div>
-                        </div>
-                    </div>
-<!--                     <div class="carousel-item">
-                        <div class="card testmonial-card border">
-                            <div class="card-body">
-                                <img src="assets/imgs/avatar-2.jpg" alt="">
-                                <p>Keeper John Britania is a true professional in the field of web development and email automation. His attention to detail and innovative solutions have greatly enhanced our marketing efforts and website functionality. We've seen a noticeable increase in engagement and conversions thanks to his work. We couldn't be happier with the results!</p>
-                                <h1 class="title">Christine Villacorta</h1>
-                                <h1 class="subtitle">Graphics Manager, Twlv20</h1>
-                                
-                            </div>
-                        </div>
-                    </div> -->
-                    <div class="carousel-item">
-                        <div class="card testmonial-card border">
-                            <div class="card-body">
-                                <img src="assets/imgs/avatar-3.jpg" alt="">
-                                <p>If you're looking for a web developer who knows how to integrate seamless email automation, Keeper John Britania is your go-to expert. His technical skills and creative approach helped us achieve our goals with ease. The end result exceeded our expectations and has had a positive impact on our business operations.</p>
-                                <h1 class="title">Krishelle Balboa</h1>
-                                <h1 class="subtitle">Project Manager/Web Developer, Glass Elephant</h1>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <!-- ── Portfolio ──────────────────────────────────────────── -->
+  <section id="portfolio" class="section">
+    <div class="container text-center">
+      <p class="label reveal">Portfolio</p>
+      <h2 class="section-title reveal reveal-delay-1">Check My Wonderful Works</h2>
+      <p class="section-sub reveal reveal-delay-2">Here are some of the amazing projects I've worked on, showcasing my skills in web development.</p>
+      <div class="portfolio-grid">
+        <div class="portfolio-item reveal">
+          <img src="assets/imgs/folio-1.jpg" alt="Copy Ninjas">
+          <div class="portfolio-overlay">
+            <h5>Copy Ninjas</h5>
+            <div class="portfolio-overlay-links">
+              <a href="javascript:void(0)" class="open-modal" data-modal="modal1"><i class="ti-zoom-in"></i></a>
+              <a href="https://copyninjas.io/" target="_blank"><i class="ti-link"></i></a>
             </div>
+          </div>
         </div>
-    </section>
-    <!-- End of testmonial section -->
-
-    <!-- Blog Section
-    <section id="blog" class="section">
-        <div class="container text-center">
-            <h6 class="subtitle">My Blogs</h6>
-            <h6 class="section-title mb-4">Latest News</h6>
-            <p class="mb-5 pb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. In alias dignissimos. <br> rerum commodi corrupti, temporibus non quam.</p>
-
-            <div class="row text-left">
-                <div class="col-md-4">
-                    <div class="card border mb-4">
-                        <img src="assets/imgs/blog-1.jpg" alt="" class="card-img-top w-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Designe for Everyone</h5>
-                            <div class="post-details">
-                                <a href="javascript:void(0)">Posted By: Admin</a>
-                                <a href="javascript:void(0)"><i class="ti-thumb-up"></i> 456</a>
-                                <a href="javascript:void(0)"><i class="ti-comment"></i> 123</a>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut ad vel dolorum, iusto velit, minima? Voluptas nemo harum impedit nisi.</p>
-                            <a href="javascript:void(0)">Read More..</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card border mb-4">
-                        <img src="assets/imgs/blog-2.jpg" alt="" class="card-img-top w-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Web Layouts</h5>
-                            <div class="post-details">
-                                <a href="javascript:void(0)">Posted By: Admin</a>
-                                <a href="javascript:void(0)"><i class="ti-thumb-up"></i> 456</a>
-                                <a href="javascript:void(0)"><i class="ti-comment"></i> 123</a>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut ad vel dolorum, iusto velit, minima? Voluptas nemo harum impedit nisi.</p>
-                            <a href="javascript:void(0)">Read More..</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card border mb-4">
-                        <img src="assets/imgs/blog-3.jpg" alt="" class="card-img-top w-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Bootstrap Framework</h5>
-                            <div class="post-details">
-                                <a href="javascript:void(0)">Posted By: Admin</a>
-                                <a href="javascript:void(0)"><i class="ti-thumb-up"></i> 456</a>
-                                <a href="javascript:void(0)"><i class="ti-comment"></i> 123</a>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut ad vel dolorum, iusto velit, minima? Voluptas nemo harum impedit nisi.</p>
-                            <a href="javascript:void(0)">Read More..</a>
-                        </div>
-                    </div>
-                </div>
+        <div class="portfolio-item reveal reveal-delay-1">
+          <img src="assets/imgs/folio-2.jpg" alt="Digital Solopreneur">
+          <div class="portfolio-overlay">
+            <h5>Digital Solopreneur</h5>
+            <div class="portfolio-overlay-links">
+              <a href="javascript:void(0)" class="open-modal" data-modal="modal2"><i class="ti-zoom-in"></i></a>
+              <a href="https://digitalsolopreneur.com/" target="_blank"><i class="ti-link"></i></a>
             </div>
+          </div>
         </div>
-    </section> -->
-
-    <!-- Hire me section -->
-    <section class="bg-gray p-0 section">
-        <div class="container">
-            <div class="card bg-primary">
-                <div class="card-body text-light">
-                    <div class="row align-items-center">
-                        <div class="col-sm-9 text-center text-sm-left">
-                            <h3 class="mt-3">Hire Me For Your Project</h3>
-                            <p class="mb-3">Looking to elevate your online presence?<br> Let’s collaborate and make your digital vision a reality.</p>
-                        </div>
-                        <div class="col-sm-3 text-center text-sm-right">
-                            <button class="btn btn-light rounded"><a href="https://www.onlinejobs.ph/jobseekers/info/865545" target="_blank">Hire Me!</a></button>
-                        </div>
-                    </div>
-                </div> 
+        <div class="portfolio-item reveal reveal-delay-2">
+          <img src="assets/imgs/folio-3.jpg" alt="Culleys">
+          <div class="portfolio-overlay">
+            <h5>Culleys</h5>
+            <div class="portfolio-overlay-links">
+              <a href="javascript:void(0)" class="open-modal" data-modal="modal3"><i class="ti-zoom-in"></i></a>
+              <a href="https://culleys.co.nz/" target="_blank"><i class="ti-link"></i></a>
             </div>
+          </div>
         </div>
-    </section>      
-    <!-- End od Hire me section. -->
-
-    <!-- Contact Section -->
-    <section id="contact" class="position-relative section">
-        <div class="container text-center">
-            <h6 class="subtitle">Contact</h6>
-            <h6 class="section-title mb-4">Get In Touch With Me</h6>
-            <p class="mb-5 pb-4">I'm always open to new opportunities and collaborations.<br> feel free to reach out. Let's connect and bring your ideas to life!</p>
-
-            <div class="contact text-left">
-                <div class="form">
-                    <h6 class="subtitle">Available 24/7</h6>
-                    <h6 class="section-title mb-4">Get In Touch</h6>
-                    <form id="contact-form">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="name" placeholder="Enter name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control" id="email" placeholder="Enter email" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea name="message" id="message" cols="30" rows="5" class="form-control" placeholder="Message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block rounded w-lg">Send Message</button>
-                    </form>
-                    <div id="status"></div>
-                </div>
-                <div class="contact-infos">
-                    <div class="item">
-                        <i class="ti-location-pin"></i>
-                        <div class="">
-                            <h5>Location</h5>
-                            <p> Bago City, Negros Occidental, Philippines</p>   
-                        </div>                          
-                    </div>
-                    <div class="item">
-                        <i class="ti-mobile"></i>
-                        <div>
-                            <h5>Phone Number</h5>
-                            <p>+639666414199</p>
-                        </div>                          
-                    </div>
-                    <div class="item">
-                        <i class="ti-email"></i>
-                        <div class="mb-0">
-                            <h5>Email Address</h5>
-                            <p>kjbritz@gmail.com</p>
-                        </div>
-                    </div>
-                </div>                  
+        <div class="portfolio-item reveal">
+          <img src="assets/imgs/folio-4.jpg" alt="Hire Engage">
+          <div class="portfolio-overlay">
+            <h5>Hire Engage</h5>
+            <div class="portfolio-overlay-links">
+              <a href="javascript:void(0)" class="open-modal" data-modal="modal4"><i class="ti-zoom-in"></i></a>
+              <a href="https://hireengage.com/" target="_blank"><i class="ti-link"></i></a>
             </div>
-        </div>  
-        <div id="map">
-           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125532.916909998!2d122.87199132833227!3d10.508254464656408!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33aec62a32f91fe9%3A0xc2719ecef3d4f59d!2sBago%20City%2C%20Negros%20Occidental!5e0!3m2!1sen!2sph!4v1721384638485!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>      
-    </section>
-    <!-- End of Contact Section -->
-
-    <!-- Page Footer -->
-    <footer class="page-footer">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-sm-6">
-		<!--<p>Copyright <script>document.write(new Date().getFullYear())</script> &copy; <a href="http://www.devcrud.com" target="_blank">DevCRUD</a></p> -->
-		<p>Copyright <script>document.write(new Date().getFullYear())</script> &copy; Keeper John Britania</p>
-                </div>
-                <div class="col-sm-6">
-                    <div class="socials">
-                        <a class="social-item" href="https://web.facebook.com/keepsbritania/" target="_blank"><i class="ti-facebook"></i></a>
-                    <a class="social-item" href="https://www.linkedin.com/in/keeper-john-britania-327765195/" target="_blank"><i class="ti-linkedin"></i></a>
-                    <a class="social-item" href="https://github.com/KeepsBritania/" target="_blank"><i class="ti-github"></i></a>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-    </footer> 
-    <!-- End of page footer -->
-	
-	<!-- core  -->
-    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
-    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
-    <!-- bootstrap 3 affix -->
-	<script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
-
-    <!-- steller js -->
-    <script src="assets/js/steller.js"></script>
-
-
-    <script>
-        document.getElementById('contact-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
-        
-            // Collect form data
-            var name = document.getElementById('name').value;
-            var email = document.getElementById('email').value;
-            var message = document.getElementById('message').value;
-        
-            // Prepare data to be sent
-            var formData = {
-                name: name,
-                email: email,
-                message: message
-            };
-        
-            // Send data using fetch API
-            fetch('https://formspree.io/f/mgvwoopn', { // Replace with your Formspree endpoint
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            })
-            .then(function(response) {
-                if (response.ok) {
-                    document.getElementById('status').innerText = 'Message sent successfully!';
-                } else {
-                    document.getElementById('status').innerText = 'Failed to send message.';
-                }
-            })
-            .catch(function(error) {
-                document.getElementById('status').innerText = 'An error occurred: ' + error.message;
-            });
-        });
-        </script>
-        
-        <script>
-            particlesJS('particles-js',
-              {
-                "particles": {
-                  "number": {
-                    "value": 80,
-                    "density": {
-                      "enable": true,
-                      "value_area": 800
-                    }
-                  },
-                  "color": {
-                    "value": "#ffffff"
-                  },
-                  "shape": {
-                    "type": "circle",
-                    "stroke": {
-                      "width": 0,
-                      "color": "#000000"
-                    },
-                    "polygon": {
-                      "nb_sides": 5
-                    },
-                    "image": {
-                      "src": "img/github.svg",
-                      "width": 100,
-                      "height": 100
-                    }
-                  },
-                  "opacity": {
-                    "value": 0.5,
-                    "random": false,
-                    "anim": {
-                      "enable": false,
-                      "speed": 1,
-                      "opacity_min": 0.1,
-                      "sync": false
-                    }
-                  },
-                  "size": {
-                    "value": 3,
-                    "random": true,
-                    "anim": {
-                      "enable": false,
-                      "speed": 40,
-                      "size_min": 0.1,
-                      "sync": false
-                    }
-                  },
-                  "line_linked": {
-                    "enable": true,
-                    "distance": 150,
-                    "color": "#ffffff",
-                    "opacity": 0.4,
-                    "width": 1
-                  },
-                  "move": {
-                    "enable": true,
-                    "speed": 6,
-                    "direction": "none",
-                    "random": false,
-                    "straight": false,
-                    "out_mode": "out",
-                    "bounce": false,
-                    "attract": {
-                      "enable": false,
-                      "rotateX": 600,
-                      "rotateY": 1200
-                    }
-                  }
-                },
-                "interactivity": {
-                  "detect_on": "canvas",
-                  "events": {
-                    "onhover": {
-                      "enable": true,
-                      "mode": "grab"
-                    },
-                    "onclick": {
-                      "enable": true,
-                      "mode": "grab"
-                    },
-                    "resize": true
-                  },
-                  "modes": {
-                    "grab": {
-                      "distance": 400,
-                      "line_linked": {
-                        "opacity": 1
-                      }
-                    },
-                    "bubble": {
-                      "distance": 400,
-                      "size": 40,
-                      "duration": 2,
-                      "opacity": 8,
-                      "speed": 3
-                    },
-                    "repulse": {
-                      "distance": 200,
-                      "duration": 0.4
-                    },
-                    "push": {
-                      "particles_nb": 4
-                    },
-                    "remove": {
-                      "particles_nb": 2
-                    }
-                  }
-                },
-                "retina_detect": true
-              }
-            );
-            </script>
-            
-</body>
-</html>
+        <div class="portfolio-item reveal reveal-delay-1">
+          <img src="assets/imgs/folio-5.jpg" alt="Inbox Society">
+          <div class="portfolio-overlay">
+            <h5>Inbox Society</h5>
+            <div class="portfolio-overlay-links">
+              <a href="javascript:void(0)" class="open-modal" data-modal="modal5"><i class="ti-zoom-in"></i></a>
+              <a href="https://www.inboxsociety.com/" target="_blank"><i class

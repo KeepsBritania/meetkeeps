@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"><\/script>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--bg:#fafafa;--surface:#fff;--text:#1a1a1a;--muted:#6b7280;--accent:#2563eb;--accent-lt:#eff6ff;--border:#e5e7eb;--radius:14px;--tr:.4s cubic-bezier(.4,0,.2,1)}
@@ -308,7 +308,7 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:32px
 <footer>
 <div class="container">
 <div class="footer-inner">
-<p>Copyright <script>document.write(new Date().getFullYear())<\/script> &copy; Keeper John Britania</p>
+<p>Copyright <script>document.write(new Date().getFullYear())</script> &copy; Keeper John Britania</p>
 <div class="footer-socials">
 <a href="https://web.facebook.com/keepsbritania/" target="_blank"><i class="ti-facebook"></i></a>
 <a href="https://www.linkedin.com/in/keeper-john-britania-327765195/" target="_blank"><i class="ti-linkedin"></i></a>
@@ -345,6 +345,6 @@ setInterval(function(){goTo((ci+1)%cn)},6000);
 document.getElementById('contact-form').addEventListener('submit',function(ev){ev.preventDefault();var data={name:document.getElementById('name').value,email:document.getElementById('email').value,message:document.getElementById('message').value};fetch('https://formspree.io/f/mgvwoopn',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}).then(function(r){document.getElementById('status').innerText=r.ok?'Message sent successfully!':'Failed to send message.';if(r.ok)document.getElementById('contact-form').reset()}).catch(function(e){document.getElementById('status').innerText='An error occurred: '+e.message})});
 // Particles background
 if(window.particlesJS){particlesJS('particles-js',{particles:{number:{value:70,density:{enable:true,value_area:900}},color:{value:'#ffffff'},shape:{type:'circle'},opacity:{value:.4,random:false},size:{value:3,random:true},line_linked:{enable:true,distance:150,color:'#ffffff',opacity:.25,width:1},move:{enable:true,speed:2,direction:'none',random:false,straight:false,out_mode:'out',bounce:false}},interactivity:{detect_on:'canvas',events:{onhover:{enable:true,mode:'grab'},onclick:{enable:true,mode:'push'},resize:true},modes:{grab:{distance:160,line_linked:{opacity:.6}},push:{particles_nb:3}}},retina_detect:true});}
-<\/script>
+</script>
 </body>
   </html>

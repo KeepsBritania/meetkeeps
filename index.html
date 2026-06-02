@@ -1,819 +1,350 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="assets/imgs/logo-sm.svg">
-  <title>Keeper John Britania | Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-
-  <style>
-    /* ─── Reset & Base ─────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg:        #fafafa;
-      --surface:   #ffffff;
-      --text:      #1a1a1a;
-      --muted:     #6b7280;
-      --accent:    #2563eb;
-      --accent-lt: #eff6ff;
-      --border:    #e5e7eb;
-      --radius:    14px;
-      --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a { text-decoration: none; color: inherit; }
-    img { max-width: 100%; display: block; }
-
-    /* ─── Utility ───────────────────────────────────────────── */
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-    .section    { padding: 96px 0; }
-    .text-center { text-align: center; }
-
-    .label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 12px;
-    }
-    .section-title {
-      font-size: clamp(28px, 4vw, 42px);
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      line-height: 1.2;
-      margin-bottom: 16px;
-    }
-    .section-sub {
-      color: var(--muted);
-      font-size: 16px;
-      max-width: 520px;
-      margin: 0 auto 56px;
-    }
-
-    /* ─── Buttons ───────────────────────────────────────────── */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 28px;
-      border-radius: 50px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      border: none;
-      transition: all var(--transition);
-    }
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-    }
-    .btn-primary:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,99,235,.3); }
-    .btn-outline {
-      background: transparent;
-      color: var(--text);
-      border: 1.5px solid var(--border);
-    }
-    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-    .btn-light {
-      background: #fff;
-      color: var(--accent);
-    }
-    .btn-light:hover { background: var(--accent-lt); transform: translateY(-2px); }
-
-    /* ─── Navbar ────────────────────────────────────────────── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 18px 0;
-      transition: all var(--transition);
-    }
-    nav.scrolled {
-      background: rgba(255,255,255,0.88);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      box-shadow: 0 1px 0 var(--border);
-      padding: 12px 0;
-    }
-    nav .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .nav-logo img { height: 32px; }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      list-style: none;
-    }
-    .nav-links a {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--muted);
-      padding: 8px 14px;
-      border-radius: 8px;
-      transition: all var(--transition);
-    }
-    .nav-links a:hover { color: var(--text); background: var(--border); }
-    .nav-links .btn { margin-left: 8px; }
-
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      padding: 4px;
-    }
-    .hamburger span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: var(--text);
-      border-radius: 2px;
-      transition: all var(--transition);
-    }
-
-    @media (max-width: 768px) {
-      .hamburger { display: flex; }
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: calc(100% + 8px);
-        left: 16px; right: 16px;
-        background: #fff;
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        flex-direction: column;
-        padding: 16px;
-        box-shadow: 0 16px 48px rgba(0,0,0,.08);
-      }
-      .nav-links.open { display: flex; }
-      .nav-links a { padding: 10px 16px; width: 100%; }
-    }
-
-    /* ─── Hero ──────────────────────────────────────────────── */
-    #home {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
-      overflow: hidden;
-    }
-    #particles-js {
-      position: absolute;
-      inset: 0;
-      opacity: 0.6;
-    }
-    .hero-inner {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 64px;
-      padding: 120px 0 80px;
-    }
-    .hero-text .label { color: rgba(255,255,255,0.6); }
-    .hero-text h1 {
-      font-size: clamp(40px, 6vw, 72px);
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: -1.5px;
-      line-height: 1.05;
-      margin-bottom: 16px;
-    }
-    .hero-text h1 span { color: #60a5fa; }
-    .hero-text p {
-      color: rgba(255,255,255,0.65);
-      font-size: 18px;
-      margin-bottom: 36px;
-    }
-    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
-    .hero-socials {
-      display: flex;
-      gap: 12px;
-      margin-top: 32px;
-    }
-    .hero-socials a {
-      width: 40px; height: 40px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(255,255,255,0.7);
-      font-size: 15px;
-      transition: all var(--transition);
-    }
-    .hero-socials a:hover { background: var(--accent); color: #fff; transform: translateY(-2px); }
-    .hero-img {
-      position: relative;
-      display: flex;
-      justify-content: center;
-    }
-    .hero-img img {
-      width: 380px;
-      height: 380px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 4px solid rgba(255,255,255,0.15);
-      box-shadow: 0 32px 80px rgba(0,0,0,.4);
-    }
-    .hero-stats {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border-top: 1px solid rgba(255,255,255,0.1);
-      padding-top: 40px;
-      margin-top: 8px;
-    }
-    .stat-item {
-      padding: 24px 0;
-      text-align: center;
-      border-right: 1px solid rgba(255,255,255,0.1);
-    }
-    .stat-item:last-child { border-right: none; }
-    .stat-item h2 {
-      font-size: 36px;
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: -1px;
-    }
-    .stat-item p { color: rgba(255,255,255,0.5); font-size: 13px; margin-top: 4px; }
-
-    @media (max-width: 768px) {
-      .hero-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; padding: 100px 0 60px; }
-      .hero-img { order: -1; }
-      .hero-img img { width: 220px; height: 220px; }
-      .hero-btns { justify-content: center; }
-      .hero-socials { justify-content: center; }
-      .hero-stats { grid-template-columns: repeat(3, 1fr); }
-    }
-
-    /* ─── About ─────────────────────────────────────────────── */
-    #about { background: var(--surface); }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 260px 1fr;
-      gap: 64px;
-      align-items: start;
-    }
-    .about-img img {
-      width: 100%;
-      border-radius: var(--radius);
-      aspect-ratio: 1;
-      object-fit: cover;
-    }
-    .about-text .name {
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-    .about-text .role {
-      color: var(--accent);
-      font-size: 15px;
-      font-weight: 500;
-      margin-bottom: 20px;
-    }
-    .about-text p { color: var(--muted); margin-bottom: 16px; }
-    @media (max-width: 768px) {
-      .about-grid { grid-template-columns: 1fr; }
-      .about-img img { max-width: 200px; border-radius: 50%; }
-    }
-
-    /* ─── Services ──────────────────────────────────────────── */
-    #service { background: var(--bg); }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 20px;
-    }
-    .service-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 32px 24px;
-      text-align: center;
-      transition: all var(--transition);
-      cursor: default;
-    }
-    .service-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-6px);
-      box-shadow: 0 20px 48px rgba(37,99,235,.08);
-    }
-    .service-card i {
-      font-size: 28px;
-      color: var(--accent);
-      margin-bottom: 16px;
-      display: block;
-    }
-    .service-card h5 {
-      font-size: 15px;
-      font-weight: 600;
-    }
-
-    /* ─── Skills ────────────────────────────────────────────── */
-    #skills { background: var(--surface); }
-    .skills-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px 64px;
-    }
-    .skill-item label {
-      display: flex;
-      justify-content: space-between;
-      font-size: 14px;
-      font-weight: 500;
-      margin-bottom: 10px;
-    }
-    .skill-item label span { color: var(--muted); }
-    .progress {
-      background: var(--border);
-      border-radius: 99px;
-      height: 6px;
-      overflow: hidden;
-    }
-    .progress-bar {
-      height: 100%;
-      background: var(--accent);
-      border-radius: 99px;
-      width: 0;
-      transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
-    }
-    @media (max-width: 640px) { .skills-grid { grid-template-columns: 1fr; } }
-
-    /* ─── Portfolio ─────────────────────────────────────────── */
-    #portfolio { background: var(--bg); }
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-    @media (max-width: 768px) { .portfolio-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 480px) { .portfolio-grid { grid-template-columns: 1fr; } }
-    .portfolio-item {
-      position: relative;
-      border-radius: var(--radius);
-      overflow: hidden;
-      aspect-ratio: 4/3;
-      background: var(--border);
-    }
-    .portfolio-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s var(--transition);
-    }
-    .portfolio-item:hover img { transform: scale(1.07); }
-    .portfolio-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(15,23,42,.75);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      opacity: 0;
-      transition: opacity var(--transition);
-      backdrop-filter: blur(4px);
-    }
-    .portfolio-item:hover .portfolio-overlay { opacity: 1; }
-    .portfolio-overlay h5 { color: #fff; font-size: 16px; font-weight: 600; }
-    .portfolio-overlay-links { display: flex; gap: 12px; }
-    .portfolio-overlay-links a {
-      width: 36px; height: 36px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-size: 14px;
-      transition: all var(--transition);
-    }
-    .portfolio-overlay-links a:hover { background: var(--accent); border-color: var(--accent); }
-
-    /* ─── Modal ─────────────────────────────────────────────── */
-    .modal-backdrop {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.55);
-      z-index: 200;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-    }
-    .modal-backdrop.open { display: flex; }
-    .modal-box {
-      background: var(--surface);
-      border-radius: 20px;
-      padding: 40px;
-      max-width: 520px;
-      width: 100%;
-      position: relative;
-      box-shadow: 0 32px 80px rgba(0,0,0,.25);
-      animation: fadeUp 0.35s ease;
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .modal-close {
-      position: absolute;
-      top: 16px; right: 16px;
-      width: 32px; height: 32px;
-      border-radius: 50%;
-      border: none;
-      background: var(--border);
-      cursor: pointer;
-      font-size: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background var(--transition);
-    }
-    .modal-close:hover { background: #e5e7eb; }
-    .modal-box h4 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
-    .modal-box p { color: var(--muted); font-size: 15px; margin-bottom: 10px; }
-    .modal-box a { color: var(--accent); font-weight: 500; }
-
-    /* ─── Testimonial ───────────────────────────────────────── */
-    #testmonial { background: var(--surface); }
-    .testimonial-track {
-      display: flex;
-      overflow: hidden;
-      position: relative;
-    }
-    .testimonial-slide {
-      flex: 0 0 100%;
-      transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
-    }
-    .testimonial-card {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 40px;
-      max-width: 680px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .testimonial-card img {
-      width: 64px; height: 64px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin: 0 auto 20px;
-      border: 2px solid var(--border);
-    }
-    .testimonial-card p { color: var(--muted); font-size: 16px; margin-bottom: 24px; font-style: italic; }
-    .testimonial-card .t-name { font-weight: 700; font-size: 16px; }
-    .testimonial-card .t-role { color: var(--muted); font-size: 13px; margin-top: 4px; }
-    .testimonial-dots {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 28px;
-    }
-    .dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--border);
-      cursor: pointer;
-      transition: all var(--transition);
-      border: none;
-    }
-    .dot.active { background: var(--accent); width: 24px; border-radius: 4px; }
-
-    /* ─── Hire Me Banner ────────────────────────────────────── */
-    #hire-banner {
-      background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
-      padding: 72px 0;
-    }
-    .hire-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 32px;
-      flex-wrap: wrap;
-    }
-    .hire-inner h3 { font-size: 28px; font-weight: 700; color: #fff; }
-    .hire-inner p { color: rgba(255,255,255,0.7); margin-top: 8px; }
-
-    /* ─── Contact ───────────────────────────────────────────── */
-    #contact { background: var(--bg); }
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      text-align: left;
-    }
-    @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
-    .contact-form-wrap .form-label { font-size: 13px; font-weight: 500; color: var(--muted); margin-bottom: 6px; display: block; }
-    .form-control {
-      width: 100%;
-      padding: 12px 16px;
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      font-size: 15px;
-      font-family: inherit;
-      background: var(--surface);
-      color: var(--text);
-      transition: border-color var(--transition), box-shadow var(--transition);
-      margin-bottom: 20px;
-      outline: none;
-    }
-    .form-control:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(37,99,235,.1); }
-    textarea.form-control { resize: vertical; min-height: 140px; }
-    #status { margin-top: 12px; font-size: 14px; color: var(--muted); }
-    .contact-info-list { display: flex; flex-direction: column; gap: 28px; margin-top: 8px; }
-    .ci-item { display: flex; gap: 16px; align-items: flex-start; }
-    .ci-icon {
-      width: 44px; height: 44px;
-      background: var(--accent-lt);
-      color: var(--accent);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      flex-shrink: 0;
-    }
-    .ci-item h5 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
-    .ci-item p { color: var(--muted); font-size: 14px; }
-    .map-wrap {
-      margin-top: 48px;
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid var(--border);
-      height: 320px;
-    }
-    .map-wrap iframe { width: 100%; height: 100%; border: 0; display: block; }
-
-    /* ─── Footer ────────────────────────────────────────────── */
-    footer {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      padding: 32px 0;
-    }
-    .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-    .footer-inner p { font-size: 13px; color: var(--muted); }
-    .footer-socials { display: flex; gap: 10px; }
-    .footer-socials a {
-      width: 36px; height: 36px;
-      border-radius: 50%;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--muted);
-      font-size: 14px;
-      transition: all var(--transition);
-    }
-    .footer-socials a:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
-
-    /* ─── Scroll-reveal ─────────────────────────────────────── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-    .reveal-delay-4 { transition-delay: 0.4s; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/x-icon" href="assets/imgs/logo-sm.svg">
+<title>Keeper John Britania | Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"><\/script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#fafafa;--surface:#fff;--text:#1a1a1a;--muted:#6b7280;--accent:#2563eb;--accent-lt:#eff6ff;--border:#e5e7eb;--radius:14px;--tr:.4s cubic-bezier(.4,0,.2,1)}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+.section{padding:96px 0}
+.text-center{text-align:center}
+.label{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.section-title{font-size:clamp(28px,4vw,42px);font-weight:700;letter-spacing:-.5px;line-height:1.2;margin-bottom:16px}
+.section-sub{color:var(--muted);font-size:16px;max-width:520px;margin:0 auto 56px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:50px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all var(--tr)}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:#1d4ed8;transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,99,235,.3)}
+.btn-outline{background:transparent;color:var(--text);border:1.5px solid var(--border)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.btn-light{background:#fff;color:var(--accent)}
+.btn-light:hover{background:var(--accent-lt);transform:translateY(-2px)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 0;transition:all var(--tr)}
+nav.scrolled{background:rgba(255,255,255,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--border);padding:12px 0}
+nav.scrolled .nav-links a{color:var(--muted)}
+nav .container{display:flex;align-items:center;justify-content:space-between}
+.nav-logo img{height:32px}
+.nav-links{display:flex;align-items:center;gap:8px;list-style:none}
+.nav-links a{font-size:14px;font-weight:500;color:rgba(255,255,255,.75);padding:8px 14px;border-radius:8px;transition:all var(--tr)}
+.nav-links a:hover{color:var(--accent)}
+.nav-links .btn{color:#fff!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all var(--tr)}
+nav.scrolled .hamburger span{background:var(--text)}
+@media(max-width:768px){.hamburger{display:flex}.nav-links{display:none;position:absolute;top:calc(100% + 8px);left:16px;right:16px;background:#fff;border:1px solid var(--border);border-radius:var(--radius);flex-direction:column;padding:16px;box-shadow:0 16px 48px rgba(0,0,0,.08)}.nav-links.open{display:flex}.nav-links a{padding:10px 16px;width:100%;color:var(--muted)!important}}
+#home{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%);overflow:hidden}
+#particles-js{position:absolute;inset:0;z-index:1}
+#home .container{position:relative;z-index:2}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:64px;padding:120px 0 60px}
+.hero-text .label{color:rgba(255,255,255,.6)}
+.hero-text h1{font-size:clamp(40px,6vw,72px);font-weight:800;color:#fff;letter-spacing:-1.5px;line-height:1.05;margin-bottom:16px}
+.hero-text h1 span{color:#60a5fa}
+.hero-text>p{color:rgba(255,255,255,.65);font-size:18px;margin-bottom:36px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.hero-socials{display:flex;gap:12px;margin-top:32px}
+.hero-socials a{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.7);font-size:15px;transition:all var(--tr)}
+.hero-socials a:hover{background:var(--accent);color:#fff;transform:translateY(-2px)}
+.hero-img{display:flex;justify-content:center}
+.hero-img img{width:360px;height:360px;object-fit:cover;border-radius:50%;border:4px solid rgba(255,255,255,.15);box-shadow:0 32px 80px rgba(0,0,0,.4)}
+.hero-stats{position:relative;z-index:2;max-width:1052px;margin:0 auto;width:100%;padding:0 24px;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.1)}
+.stat-item{padding:32px 0;text-align:center;border-right:1px solid rgba(255,255,255,.1)}
+.stat-item:last-child{border-right:none}
+.stat-item h2{font-size:36px;font-weight:800;color:#fff;letter-spacing:-1px}
+.stat-item p{color:rgba(255,255,255,.5);font-size:13px;margin-top:4px}
+@media(max-width:768px){.hero-inner{grid-template-columns:1fr;gap:40px;text-align:center;padding:110px 0 50px}.hero-img{order:-1}.hero-img img{width:220px;height:220px}.hero-btns,.hero-socials{justify-content:center}}
+#about{background:var(--surface)}
+.about-grid{display:grid;grid-template-columns:260px 1fr;gap:64px;align-items:start}
+.about-img img{width:100%;border-radius:var(--radius);aspect-ratio:1;object-fit:cover}
+.about-text .name{font-size:28px;font-weight:700;margin-bottom:4px}
+.about-text .role{color:var(--accent);font-size:15px;font-weight:500;margin-bottom:20px}
+.about-text p{color:var(--muted);margin-bottom:16px}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr;text-align:center}.about-img img{max-width:200px;margin:0 auto;border-radius:50%}}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
+.service-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px 24px;text-align:center;transition:all var(--tr)}
+.service-card:hover{border-color:var(--accent);transform:translateY(-6px);box-shadow:0 20px 48px rgba(37,99,235,.08)}
+.service-card i{font-size:28px;color:var(--accent);margin-bottom:16px;display:block}
+.service-card h5{font-size:15px;font-weight:600}
+#skills{background:var(--surface)}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px 64px;text-align:left}
+.skill-item label{display:flex;justify-content:space-between;font-size:14px;font-weight:500;margin-bottom:10px}
+.skill-item label span{color:var(--muted)}
+.progress{background:var(--border);border-radius:99px;height:6px;overflow:hidden}
+.progress-bar{height:100%;background:var(--accent);border-radius:99px;width:0;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+@media(max-width:640px){.skills-grid{grid-template-columns:1fr}}
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:768px){.portfolio-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.portfolio-grid{grid-template-columns:1fr}}
+.portfolio-item{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:4/3;background:var(--border)}
+.portfolio-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--tr)}
+.portfolio-item:hover img{transform:scale(1.07)}
+.portfolio-overlay{position:absolute;inset:0;background:rgba(15,23,42,.75);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;opacity:0;transition:opacity var(--tr)}
+.portfolio-item:hover .portfolio-overlay{opacity:1}
+.portfolio-overlay h5{color:#fff;font-size:16px;font-weight:600}
+.po-links{display:flex;gap:12px}
+.po-links a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;transition:all var(--tr)}
+.po-links a:hover{background:var(--accent);border-color:var(--accent)}
+.modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:200;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(8px)}
+.modal-backdrop.open{display:flex}
+.modal-box{background:var(--surface);border-radius:20px;padding:40px;max-width:520px;width:100%;position:relative;box-shadow:0 32px 80px rgba(0,0,0,.25);animation:fadeUp .35s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.modal-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:none;background:var(--border);cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:background var(--tr)}
+.modal-close:hover{background:#d1d5db}
+.modal-box h4{font-size:20px;font-weight:700;margin-bottom:12px}
+.modal-box p{color:var(--muted);font-size:15px;margin-bottom:10px}
+.modal-box a{color:var(--accent);font-weight:500}
+#testmonial{background:var(--surface)}
+.testi-wrap{max-width:680px;margin:0 auto;overflow:hidden}
+.testi-track{display:flex;transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.testi-slide{flex:0 0 100%;padding:0 8px}
+.testi-card{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:40px;text-align:center}
+.testi-card img{width:64px;height:64px;border-radius:50%;object-fit:cover;margin:0 auto 20px;border:2px solid var(--border)}
+.testi-card p{color:var(--muted);font-size:16px;margin-bottom:24px;font-style:italic}
+.testi-card .t-name{font-weight:700;font-size:16px}
+.testi-card .t-role{color:var(--muted);font-size:13px;margin-top:4px}
+.testi-dots{display:flex;justify-content:center;gap:8px;margin-top:28px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--border);cursor:pointer;transition:all var(--tr);border:none}
+.dot.active{background:var(--accent);width:24px;border-radius:4px}
+#hire{background:linear-gradient(135deg,#1e40af 0%,#2563eb 100%);padding:72px 0}
+.hire-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.hire-inner h3{font-size:28px;font-weight:700;color:#fff}
+.hire-inner p{color:rgba(255,255,255,.75);margin-top:8px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;text-align:left}
+@media(max-width:768px){.contact-grid{grid-template-columns:1fr}}
+.form-control{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:10px;font-size:15px;font-family:inherit;background:var(--surface);color:var(--text);transition:border-color var(--tr),box-shadow var(--tr);margin-bottom:20px;outline:none}
+.form-control:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+textarea.form-control{resize:vertical;min-height:140px}
+#status{margin-top:12px;font-size:14px;color:var(--muted)}
+.ci-list{display:flex;flex-direction:column;gap:28px;margin-top:8px}
+.ci-item{display:flex;gap:16px;align-items:flex-start}
+.ci-icon{width:44px;height:44px;background:var(--accent-lt);color:var(--accent);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.ci-item h5{font-size:14px;font-weight:600;margin-bottom:4px}
+.ci-item p{color:var(--muted);font-size:14px}
+.map-wrap{margin-top:48px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);height:320px}
+.map-wrap iframe{width:100%;height:100%;border:0;display:block}
+footer{background:var(--surface);border-top:1px solid var(--border);padding:32px 0}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer-inner p{font-size:13px;color:var(--muted)}
+.footer-socials{display:flex;gap:10px}
+.footer-socials a{width:36px;height:36px;border-radius:50%;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;transition:all var(--tr)}
+.footer-socials a:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+</style>
 </head>
-
 <body id="body-top">
-
-  <!-- ── Navbar ─────────────────────────────────────────────── -->
-  <nav id="navbar">
-    <div class="container">
-      <a class="nav-logo" href="#home"><img src="assets/imgs/logo.svg" alt="Keeper John"></a>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#service">Service</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#testmonial">Testimonial</a></li>
-        <li><a href="#contact" class="btn btn-primary">Contact Me</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- ── Hero ───────────────────────────────────────────────── -->
-  <section id="home">
-    <div id="particles-js"></div>
-    <div class="container">
-      <div class="hero-inner">
-        <div class="hero-text">
-          <p class="label">hello, I'm</p>
-          <h1>Keeper<br><span>John</span></h1>
-          <p>Web Developer / Automation Hero</p>
-          <div class="hero-btns">
-            <a href="#contact" class="btn btn-primary">Hire Me</a>
-            <a href="assets/KEEPER_JOHNBRITANIA_Resume.pdf" target="_blank" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,.3);">Download CV</a>
-          </div>
-          <div class="hero-socials">
-            <a href="https://web.facebook.com/keepsbritania/" target="_blank" aria-label="Facebook"><i class="ti-facebook"></i></a>
-            <a href="https://www.linkedin.com/in/keeper-john-britania-327765195/" target="_blank" aria-label="LinkedIn"><i class="ti-linkedin"></i></a>
-            <a href="https://github.com/KeepsBritania/" target="_blank" aria-label="GitHub"><i class="ti-github"></i></a>
-          </div>
-        </div>
-        <div class="hero-img">
-          <img src="assets/imgs/person.webp" alt="Keeper John Britania">
-        </div>
-      </div>
-      <div class="hero-stats">
-        <div class="stat-item">
-          <h2>50+</h2>
-          <p>Sites Created</p>
-        </div>
-        <div class="stat-item">
-          <h2>100+</h2>
-          <p>Satisfied Clients</p>
-        </div>
-        <div class="stat-item">
-          <h2>100+</h2>
-          <p>Projects Completed</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── About ──────────────────────────────────────────────── -->
-  <section id="about" class="section">
-    <div class="container">
-      <div class="about-grid reveal">
-        <div class="about-img">
-          <img src="assets/imgs/avatar-5.jpg" alt="Keeper John Britania">
-        </div>
-        <div class="about-text">
-          <p class="label">About Me</p>
-          <h2 class="name">Keeper John</h2>
-          <p class="role">Web Developer / Automation Hero</p>
-          <p>Hello! I'm Keeper John Britania, a passionate and experienced web developer specializing in CMS development. Since 2018, I've been honing my skills in creating and managing websites using various Content Management Systems (CMS) including WordPress, HubSpot, ClickFunnels, GoHighLevel, and Shopify. With a strong foundation in web development, I have a proven track record of delivering high-quality, functional, and visually appealing websites that cater to the unique needs of my clients. My expertise extends beyond just building websites; I excel in email automation, ensuring seamless and efficient communication for businesses.</p>
-          <p>One of the aspects I love most about my job is the ability to work remotely. Equipped with my trusty laptop, I have the freedom to work from anywhere, providing my clients with flexibility and timely solutions. I am passionate about what I do and continually strive to stay updated with the latest industry trends and technologies. My commitment to excellence and my love for web development drive me to create impactful digital experiences that help businesses grow and succeed. Let's connect and bring your digital vision to life!</p>
-          <a href="assets/KEEPER_JOHNBRITANIA_Resume.pdf" target="_blank" class="btn btn-outline" style="margin-top:12px;">Download CV</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Services ───────────────────────────────────────────── -->
-  <section id="service" class="section">
-    <div class="container text-center">
-      <p class="label reveal">Service</p>
-      <h2 class="section-title reveal reveal-delay-1">Here's what I can do to help</h2>
-      <p class="section-sub reveal reveal-delay-2">Expert Solutions to Elevate Your Online Presence</p>
-      <div class="services-grid">
-        <div class="service-card reveal reveal-delay-1"><i class="ti-html5"></i><h5>HTML / CSS</h5></div>
-        <div class="service-card reveal reveal-delay-2"><i class="ti-email"></i><h5>Email Automation / GoHighLevel</h5></div>
-        <div class="service-card reveal reveal-delay-3"><i class="ti-mobile"></i><h5>Responsive Website</h5></div>
-        <div class="service-card reveal reveal-delay-4"><i class="ti-bar-chart-alt"></i><h5>SEO</h5></div>
-        <div class="service-card reveal reveal-delay-1"><i class="ti-settings"></i><h5>Site Optimization</h5></div>
-        <div class="service-card reveal reveal-delay-2"><i class="ti-support"></i><h5>Site Maintenance</h5></div>
-        <div class="service-card reveal reveal-delay-3"><i class="ti-plug"></i><h5>App Integrations</h5></div>
-        <div class="service-card reveal reveal-delay-4"><i class="ti-wordpress"></i><h5>WordPress Site Build</h5></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Skills ─────────────────────────────────────────────── -->
-  <section id="skills" class="section">
-    <div class="container text-center">
-      <p class="label reveal">Skills</p>
-      <h2 class="section-title reveal reveal-delay-1">Why Choose Me</h2>
-      <p class="section-sub reveal reveal-delay-2">Your Trusted Partner for Quality Web Development and Email Automation</p>
-      <div class="skills-grid">
-        <div class="skill-item reveal">
-          <label>HTML/CSS <span>90%</span></label>
-          <div class="progress"><div class="progress-bar" data-width="90"></div></div>
-        </div>
-        <div class="skill-item reveal reveal-delay-1">
-          <label>JavaScript <span>85%</span></label>
-          <div class="progress"><div class="progress-bar" data-width="85"></div></div>
-        </div>
-        <div class="skill-item reveal reveal-delay-2">
-          <label>Responsive Web Design <span>88%</span></label>
-          <div class="progress"><div class="progress-bar" data-width="88"></div></div>
-        </div>
-        <div class="skill-item reveal reveal-delay-3">
-          <label>SEO Optimization <span>90%</span></label>
-          <div class="progress"><div class="progress-bar" data-width="90"></div></div>
-        </div>
-        <div class="skill-item reveal">
-          <label>WordPress Development <span>91%</span></label>
-          <div class="progress"><div class="progress-bar" data-width="91"></div></div>
-        </div>
-        <div class="skill-item reveal reveal-delay-1">
-          <label>PHP/MySQL <span>84%</span></label>
-          <div class="progress"><div class="progress-bar" data-width="84"></div></div>
-        </div>
-        <div class="skill-item reveal reveal-delay-2">
-          <label>Shopify Development <span>87%</span></label>
-          <div class="progress"><div class="progress-bar" data-width="87"></div></div>
-        </div>
-        <div class="skill-item reveal reveal-delay-3">
-          <label>Email Automation <span>85%</span></label>
-          <div class="progress"><div class="progress-bar" data-width="85"></div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Portfolio ──────────────────────────────────────────── -->
-  <section id="portfolio" class="section">
-    <div class="container text-center">
-      <p class="label reveal">Portfolio</p>
-      <h2 class="section-title reveal reveal-delay-1">Check My Wonderful Works</h2>
-      <p class="section-sub reveal reveal-delay-2">Here are some of the amazing projects I've worked on, showcasing my skills in web development.</p>
-      <div class="portfolio-grid">
-        <div class="portfolio-item reveal">
-          <img src="assets/imgs/folio-1.jpg" alt="Copy Ninjas">
-          <div class="portfolio-overlay">
-            <h5>Copy Ninjas</h5>
-            <div class="portfolio-overlay-links">
-              <a href="javascript:void(0)" class="open-modal" data-modal="modal1"><i class="ti-zoom-in"></i></a>
-              <a href="https://copyninjas.io/" target="_blank"><i class="ti-link"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="portfolio-item reveal reveal-delay-1">
-          <img src="assets/imgs/folio-2.jpg" alt="Digital Solopreneur">
-          <div class="portfolio-overlay">
-            <h5>Digital Solopreneur</h5>
-            <div class="portfolio-overlay-links">
-              <a href="javascript:void(0)" class="open-modal" data-modal="modal2"><i class="ti-zoom-in"></i></a>
-              <a href="https://digitalsolopreneur.com/" target="_blank"><i class="ti-link"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="portfolio-item reveal reveal-delay-2">
-          <img src="assets/imgs/folio-3.jpg" alt="Culleys">
-          <div class="portfolio-overlay">
-            <h5>Culleys</h5>
-            <div class="portfolio-overlay-links">
-              <a href="javascript:void(0)" class="open-modal" data-modal="modal3"><i class="ti-zoom-in"></i></a>
-              <a href="https://culleys.co.nz/" target="_blank"><i class="ti-link"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="portfolio-item reveal">
-          <img src="assets/imgs/folio-4.jpg" alt="Hire Engage">
-          <div class="portfolio-overlay">
-            <h5>Hire Engage</h5>
-            <div class="portfolio-overlay-links">
-              <a href="javascript:void(0)" class="open-modal" data-modal="modal4"><i class="ti-zoom-in"></i></a>
-              <a href="https://hireengage.com/" target="_blank"><i class="ti-link"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="portfolio-item reveal reveal-delay-1">
-          <img src="assets/imgs/folio-5.jpg" alt="Inbox Society">
-          <div class="portfolio-overlay">
-            <h5>Inbox Society</h5>
-            <div class="portfolio-overlay-links">
-              <a href="javascript:void(0)" class="open-modal" data-modal="modal5"><i class="ti-zoom-in"></i></a>
-              <a href="https://www.inboxsociety.com/" target="_blank"><i class
+<nav id="navbar">
+<div class="container">
+<a class="nav-logo" href="#home"><img src="assets/imgs/logo.svg" alt="Keeper John"></a>
+<button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+<ul class="nav-links" id="navlinks">
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#service">Service</a></li>
+<li><a href="#portfolio">Portfolio</a></li>
+<li><a href="#testmonial">Testimonial</a></li>
+<li><a href="#contact" class="btn btn-primary">Contact Me</a></li>
+</ul>
+</div>
+</nav>
+<section id="home">
+<div id="particles-js"></div>
+<div class="container">
+<div class="hero-inner">
+<div class="hero-text">
+<p class="label">hello, I'm</p>
+<h1>Keeper <span>John</span></h1>
+<p>Web Developer / Automation Hero</p>
+<div class="hero-btns">
+<a href="#contact" class="btn btn-primary">Hire Me</a>
+<a href="assets/KEEPER_JOHNBRITANIA_Resume.pdf" target="_blank" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,.3)">Download CV</a>
+</div>
+<div class="hero-socials">
+<a href="https://web.facebook.com/keepsbritania/" target="_blank" aria-label="Facebook"><i class="ti-facebook"></i></a>
+<a href="https://www.linkedin.com/in/keeper-john-britania-327765195/" target="_blank" aria-label="LinkedIn"><i class="ti-linkedin"></i></a>
+<a href="https://github.com/KeepsBritania/" target="_blank" aria-label="GitHub"><i class="ti-github"></i></a>
+</div>
+</div>
+<div class="hero-img"><img src="assets/imgs/person.webp" alt="Keeper John Britania"></div>
+</div>
+</div>
+<div class="hero-stats">
+<div class="stat-item"><h2>50+</h2><p>Sites Created</p></div>
+<div class="stat-item"><h2>100+</h2><p>Satisfied Clients</p></div>
+<div class="stat-item"><h2>100+</h2><p>Projects Completed</p></div>
+</div>
+</section>
+<section id="about" class="section">
+<div class="container">
+<div class="about-grid reveal">
+<div class="about-img"><img src="assets/imgs/avatar-5.jpg" alt="Keeper John Britania"></div>
+<div class="about-text">
+<p class="label">About Me</p>
+<h2 class="name">Keeper John</h2>
+<p class="role">Web Developer / Automation Hero</p>
+<p>Hello! I'm Keeper John Britania, a passionate and experienced web developer specializing in CMS development. Since 2018, I've been honing my skills in creating and managing websites using various Content Management Systems (CMS) including WordPress, HubSpot, ClickFunnels, GoHighLevel, and Shopify. With a strong foundation in web development, I have a proven track record of delivering high-quality, functional, and visually appealing websites that cater to the unique needs of my clients. My expertise extends beyond just building websites; I excel in email automation, ensuring seamless and efficient communication for businesses.</p>
+<p>One of the aspects I love most about my job is the ability to work remotely. Equipped with my trusty laptop, I have the freedom to work from anywhere, providing my clients with flexibility and timely solutions. I am passionate about what I do and continually strive to stay updated with the latest industry trends and technologies. My commitment to excellence and my love for web development drive me to create impactful digital experiences that help businesses grow and succeed. Let's connect and bring your digital vision to life!</p>
+<a href="assets/KEEPER_JOHNBRITANIA_Resume.pdf" target="_blank" class="btn btn-outline" style="margin-top:12px">Download CV</a>
+</div>
+</div>
+</div>
+</section>
+<section id="service" class="section">
+<div class="container text-center">
+<p class="label reveal">Service</p>
+<h2 class="section-title reveal d1">Here's what I can do to help</h2>
+<p class="section-sub reveal d2">Expert Solutions to Elevate Your Online Presence</p>
+<div class="services-grid">
+<div class="service-card reveal d1"><i class="ti-html5"></i><h5>HTML / CSS</h5></div>
+<div class="service-card reveal d2"><i class="ti-email"></i><h5>Email Automation / GoHighLevel</h5></div>
+<div class="service-card reveal d3"><i class="ti-mobile"></i><h5>Responsive Website</h5></div>
+<div class="service-card reveal d4"><i class="ti-bar-chart-alt"></i><h5>SEO</h5></div>
+<div class="service-card reveal d1"><i class="ti-settings"></i><h5>Site Optimization</h5></div>
+<div class="service-card reveal d2"><i class="ti-support"></i><h5>Site Maintenance</h5></div>
+<div class="service-card reveal d3"><i class="ti-plug"></i><h5>App Integrations</h5></div>
+<div class="service-card reveal d4"><i class="ti-wordpress"></i><h5>WordPress Site Build</h5></div>
+</div>
+</div>
+</section>
+<section id="skills" class="section">
+<div class="container text-center">
+<p class="label reveal">Skills</p>
+<h2 class="section-title reveal d1">Why Choose Me</h2>
+<p class="section-sub reveal d2">Your Trusted Partner for Quality Web Development and Email Automation</p>
+<div class="skills-grid">
+<div class="skill-item reveal"><label>HTML/CSS <span>90%</span></label><div class="progress"><div class="progress-bar" data-w="90"></div></div></div>
+<div class="skill-item reveal d1"><label>JavaScript <span>85%</span></label><div class="progress"><div class="progress-bar" data-w="85"></div></div></div>
+<div class="skill-item reveal d2"><label>Responsive Web Design <span>88%</span></label><div class="progress"><div class="progress-bar" data-w="88"></div></div></div>
+<div class="skill-item reveal d3"><label>SEO Optimization <span>90%</span></label><div class="progress"><div class="progress-bar" data-w="90"></div></div></div>
+<div class="skill-item reveal"><label>WordPress Development <span>91%</span></label><div class="progress"><div class="progress-bar" data-w="91"></div></div></div>
+<div class="skill-item reveal d1"><label>PHP/MySQL <span>84%</span></label><div class="progress"><div class="progress-bar" data-w="84"></div></div></div>
+<div class="skill-item reveal d2"><label>Shopify Development <span>87%</span></label><div class="progress"><div class="progress-bar" data-w="87"></div></div></div>
+<div class="skill-item reveal d3"><label>Email Automation <span>85%</span></label><div class="progress"><div class="progress-bar" data-w="85"></div></div></div>
+</div>
+</div>
+</section>
+<section id="portfolio" class="section">
+<div class="container text-center">
+<p class="label reveal">Portfolio</p>
+<h2 class="section-title reveal d1">Check My Wonderful Works</h2>
+<p class="section-sub reveal d2">Here are some of the amazing projects I've worked on, showcasing my skills in web development.</p>
+<div class="portfolio-grid">
+<div class="portfolio-item reveal"><img src="assets/imgs/folio-1.jpg" alt="Copy Ninjas"><div class="portfolio-overlay"><h5>Copy Ninjas</h5><div class="po-links"><a href="javascript:void(0)" class="open-modal" data-modal="modal1"><i class="ti-zoom-in"></i></a><a href="https://copyninjas.io/" target="_blank"><i class="ti-link"></i></a></div></div></div>
+<div class="portfolio-item reveal d1"><img src="assets/imgs/folio-2.jpg" alt="Digital Solopreneur"><div class="portfolio-overlay"><h5>Digital Solopreneur</h5><div class="po-links"><a href="javascript:void(0)" class="open-modal" data-modal="modal2"><i class="ti-zoom-in"></i></a><a href="https://digitalsolopreneur.com/" target="_blank"><i class="ti-link"></i></a></div></div></div>
+<div class="portfolio-item reveal d2"><img src="assets/imgs/folio-3.jpg" alt="Culleys"><div class="portfolio-overlay"><h5>Culleys</h5><div class="po-links"><a href="javascript:void(0)" class="open-modal" data-modal="modal3"><i class="ti-zoom-in"></i></a><a href="https://culleys.co.nz/" target="_blank"><i class="ti-link"></i></a></div></div></div>
+<div class="portfolio-item reveal"><img src="assets/imgs/folio-4.jpg" alt="Hire Engage"><div class="portfolio-overlay"><h5>Hire Engage</h5><div class="po-links"><a href="javascript:void(0)" class="open-modal" data-modal="modal4"><i class="ti-zoom-in"></i></a><a href="https://hireengage.com/" target="_blank"><i class="ti-link"></i></a></div></div></div>
+<div class="portfolio-item reveal d1"><img src="assets/imgs/mancandy.png" alt="Man Candy Beef Jerky"><div class="portfolio-overlay"><h5>Man Candy Beef Jerky</h5><div class="po-links"><a href="javascript:void(0)" class="open-modal" data-modal="modal7"><i class="ti-zoom-in"></i></a><a href="https://mancandybeefjerky.com/" target="_blank"><i class="ti-link"></i></a></div></div></div>
+<div class="portfolio-item reveal d2"><img src="assets/imgs/folio-5.jpg" alt="Inbox Society"><div class="portfolio-overlay"><h5>Inbox Society</h5><div class="po-links"><a href="javascript:void(0)" class="open-modal" data-modal="modal5"><i class="ti-zoom-in"></i></a><a href="https://www.inboxsociety.com/" target="_blank"><i class="ti-link"></i></a></div></div></div>
+<div class="portfolio-item reveal"><img src="assets/imgs/folio-6.jpg" alt="Joons Solutions"><div class="portfolio-overlay"><h5>Joons Solutions</h5><div class="po-links"><a href="javascript:void(0)" class="open-modal" data-modal="modal6"><i class="ti-zoom-in"></i></a><a href="https://joonsolutions.com/" target="_blank"><i class="ti-link"></i></a></div></div></div>
+</div>
+</div>
+<div id="modal1" class="modal-backdrop"><div class="modal-box"><button class="modal-close">&times;</button><h4>Copy Ninjas</h4><p>For this project, we utilized WordPress and hosted it on an AWS server. Built with Elementor, it includes various integrated plugins to enhance functionality and user experience. The combination of AWS hosting and Elementor's flexibility ensured a robust and scalable website solution.</p><p><a href="https://copyninjas.io/" target="_blank">Visit Copy Ninjas</a></p></div></div>
+<div id="modal2" class="modal-backdrop"><div class="modal-box"><button class="modal-close">&times;</button><h4>Digital Solopreneur</h4><p>Developed with WordPress and Thrive Builder, this is one of the WordPress sites I created for a previous employer. The project focused on creating a dynamic and interactive site, incorporating advanced design elements and optimizing it for speed and SEO.</p><p><a href="https://digitalsolopreneur.com/" target="_blank">Visit Digital Solopreneur</a></p></div></div>
+<div id="modal3" class="modal-backdrop"><div class="modal-box"><button class="modal-close">&times;</button><h4>Culleys</h4><p>Using the Shopify Debut theme, this eCommerce site was developed during my tenure at a previous company. The project involved customizing the theme to meet client specifications, integrating necessary plugins, and optimizing the site for performance and user experience.</p><p><a href="https://culleys.co.nz/" target="_blank">Visit Culleys</a></p></div></div>
+<div id="modal4" class="modal-backdrop"><div class="modal-box"><button class="modal-close">&times;</button><h4>Hire Engage</h4><p>A standout project using WordPress and Elementor Builder, where we implemented GoHighLevel integration for enhanced functionality. This project demonstrated my ability to integrate CRM tools, streamline business processes, and deliver a highly efficient and user-friendly website.</p><p><a href="https://hireengage.com/" target="_blank">Visit Hire Engage</a></p></div></div>
+<div id="modal5" class="modal-backdrop"><div class="modal-box"><button class="modal-close">&times;</button><h4>Inbox Society</h4><p>This project was built on the Kartra platform, showcasing one of the SaaS solutions I developed at a former company. It involved creating and managing complex marketing funnels, integrating email automation, and ensuring seamless user experience for a diverse client base.</p><p><a href="https://www.inboxsociety.com/" target="_blank">Visit Inbox Society</a></p></div></div>
+<div id="modal6" class="modal-backdrop"><div class="modal-box"><button class="modal-close">&times;</button><h4>Joons Solutions</h4><p>This project involved WordPress, Elementor Builder, and various job listings plugins for a comprehensive site solution. It included customizing the job listings functionality, ensuring smooth user interactions, and optimizing the site for search engines and user engagement.</p><p><a href="https://joonsolutions.com/" target="_blank">Visit Joons Solutions</a></p></div></div>
+<div id="modal7" class="modal-backdrop"><div class="modal-box"><button class="modal-close">&times;</button><h4>Man Candy</h4><p>This project is one of the websites I successfully converted from Figma designs into a fully functional Shopify store: Man Candy Beef Jerky. The development included implementing custom functionalities on both the front end and back end, tailored to meet the specific requirements of an e-commerce platform. From pixel-perfect design translation to optimizing user experience and integrating advanced features, this project showcases my expertise in creating responsive and efficient Shopify websites.</p><p><a href="https://mancandybeefjerky.com/" target="_blank">Visit Man Candy</a></p></div></div>
+</section>
+<section id="testmonial" class="section">
+<div class="container text-center">
+<p class="label reveal">Testimonial</p>
+<h2 class="section-title reveal d1">What People Say About Me</h2>
+<p class="section-sub reveal d2">Explore some of the projects I've worked on to see my expertise in action and get inspired by my previous work.</p>
+<div class="testi-wrap reveal">
+<div class="testi-track" id="testiTrack">
+<div class="testi-slide"><div class="testi-card"><img src="assets/imgs/avatar-1.jpg" alt="Renee Ngo"><p>John is a hardworking and dedicated professional. He consistently troubleshoots our issues, whether they are technical or design-related, with expertise and efficiency. His skills and knowledge have been of great value to our business.</p><div class="t-name">Renee Ngo</div><div class="t-role">Operations and Project Head, Digital Solopreneur</div></div></div>
+<div class="testi-slide"><div class="testi-card"><img src="assets/imgs/avatar-3.jpg" alt="Krishelle Balboa"><p>If you're looking for a web developer who knows how to integrate seamless email automation, Keeper John Britania is your go-to expert. His technical skills and creative approach helped us achieve our goals with ease. The end result exceeded our expectations and has had a positive impact on our business operations.</p><div class="t-name">Krishelle Balboa</div><div class="t-role">Project Manager/Web Developer, Glass Elephant</div></div></div>
+</div>
+</div>
+<div class="testi-dots" id="testiDots"><button class="dot active" data-i="0"></button><button class="dot" data-i="1"></button></div>
+</div>
+</section>
+<section id="hire">
+<div class="container">
+<div class="hire-inner">
+<div><h3>Hire Me For Your Project</h3><p>Looking to elevate your online presence? Let's collaborate and make your digital vision a reality.</p></div>
+<a href="https://www.onlinejobs.ph/jobseekers/info/865545" target="_blank" class="btn btn-light">Hire Me!</a>
+</div>
+</div>
+</section>
+<section id="contact" class="section">
+<div class="container text-center">
+<p class="label reveal">Contact</p>
+<h2 class="section-title reveal d1">Get In Touch With Me</h2>
+<p class="section-sub reveal d2">I'm always open to new opportunities and collaborations. Feel free to reach out. Let's connect and bring your ideas to life!</p>
+<div class="contact-grid reveal">
+<div>
+<p class="label">Available 24/7</p>
+<h3 style="font-size:22px;font-weight:700;margin-bottom:24px">Get In Touch</h3>
+<form id="contact-form">
+<input type="text" class="form-control" id="name" placeholder="Enter name" required>
+<input type="email" class="form-control" id="email" placeholder="Enter email" required>
+<textarea id="message" rows="5" class="form-control" placeholder="Message" required></textarea>
+<button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Send Message</button>
+</form>
+<div id="status"></div>
+</div>
+<div class="ci-list">
+<div class="ci-item"><div class="ci-icon"><i class="ti-location-pin"></i></div><div><h5>Location</h5><p>Bago City, Negros Occidental, Philippines</p></div></div>
+<div class="ci-item"><div class="ci-icon"><i class="ti-mobile"></i></div><div><h5>Phone Number</h5><p>+639666414199</p></div></div>
+<div class="ci-item"><div class="ci-icon"><i class="ti-email"></i></div><div><h5>Email Address</h5><p>kjbritz@gmail.com</p></div></div>
+</div>
+</div>
+<div class="map-wrap reveal"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125532.916909998!2d122.87199132833227!3d10.508254464656408!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33aec62a32f91fe9%3A0xc2719ecef3d4f59d!2sBago%20City%2C%20Negros%20Occidental!5e0!3m2!1sen!2sph!4v1721384638485!5m2!1sen!2sph" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+</div>
+</section>
+<footer>
+<div class="container">
+<div class="footer-inner">
+<p>Copyright <script>document.write(new Date().getFullYear())<\/script> &copy; Keeper John Britania</p>
+<div class="footer-socials">
+<a href="https://web.facebook.com/keepsbritania/" target="_blank"><i class="ti-facebook"></i></a>
+<a href="https://www.linkedin.com/in/keeper-john-britania-327765195/" target="_blank"><i class="ti-linkedin"></i></a>
+<a href="https://github.com/KeepsBritania/" target="_blank"><i class="ti-github"></i></a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+// Navbar scroll state
+var nav=document.getElementById('navbar');
+window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>40)});
+// Mobile menu
+var ham=document.getElementById('hamburger'),nl=document.getElementById('navlinks');
+ham.addEventListener('click',function(){nl.classList.toggle('open')});
+nl.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nl.classList.remove('open')})});
+// Scroll reveal
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}})},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+// Animate skill bars when skills section enters view
+var sk=document.getElementById('skills');
+var skIo=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){document.querySelectorAll('.progress-bar').forEach(function(b){b.style.width=b.getAttribute('data-w')+'%'});skIo.unobserve(e.target)}})},{threshold:.3});
+if(sk)skIo.observe(sk);
+// Portfolio modals
+document.querySelectorAll('.open-modal').forEach(function(a){a.addEventListener('click',function(){var m=document.getElementById(this.getAttribute('data-modal'));if(m)m.classList.add('open')})});
+document.querySelectorAll('.modal-backdrop').forEach(function(m){m.addEventListener('click',function(e){if(e.target===m||e.target.classList.contains('modal-close'))m.classList.remove('open')})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.modal-backdrop.open').forEach(function(m){m.classList.remove('open')})});
+// Testimonial carousel
+var track=document.getElementById('testiTrack'),dots=document.querySelectorAll('#testiDots .dot'),ci=0,cn=dots.length;
+function goTo(i){ci=i;track.style.transform='translateX(-'+(i*100)+'%)';dots.forEach(function(d,j){d.classList.toggle('active',j===i)})}
+dots.forEach(function(d){d.addEventListener('click',function(){goTo(+this.getAttribute('data-i'))})});
+setInterval(function(){goTo((ci+1)%cn)},6000);
+// Contact form
+document.getElementById('contact-form').addEventListener('submit',function(ev){ev.preventDefault();var data={name:document.getElementById('name').value,email:document.getElementById('email').value,message:document.getElementById('message').value};fetch('https://formspree.io/f/mgvwoopn',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}).then(function(r){document.getElementById('status').innerText=r.ok?'Message sent successfully!':'Failed to send message.';if(r.ok)document.getElementById('contact-form').reset()}).catch(function(e){document.getElementById('status').innerText='An error occurred: '+e.message})});
+// Particles background
+if(window.particlesJS){particlesJS('particles-js',{particles:{number:{value:70,density:{enable:true,value_area:900}},color:{value:'#ffffff'},shape:{type:'circle'},opacity:{value:.4,random:false},size:{value:3,random:true},line_linked:{enable:true,distance:150,color:'#ffffff',opacity:.25,width:1},move:{enable:true,speed:2,direction:'none',random:false,straight:false,out_mode:'out',bounce:false}},interactivity:{detect_on:'canvas',events:{onhover:{enable:true,mode:'grab'},onclick:{enable:true,mode:'push'},resize:true},modes:{grab:{distance:160,line_linked:{opacity:.6}},push:{particles_nb:3}}},retina_detect:true});}
+<\/script>
+</body>
+  </html>

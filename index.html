@@ -37,7 +37,7 @@ a{text-decoration:none;color:inherit}
 img{max-width:100%;display:block}
 .wrap{max-width:1320px;width:100%;margin:0 auto;padding:0 40px}
 @media(max-width:600px){.wrap{padding:0 22px}}
-.section{padding:clamp(56px,9vw,104px) 0}
+.section{padding-top:clamp(56px,9vw,104px);padding-bottom:clamp(56px,9vw,104px)}
 .eyebrow{font-size:15px;color:var(--soft);font-weight:500;margin-bottom:30px}
 .pill-status{display:inline-flex;align-items:center;gap:9px;font-size:15px;color:var(--muted);font-weight:500;margin-bottom:26px}
 .pill-status .dot{width:9px;height:9px;border-radius:50%;background:#37c871;box-shadow:0 0 0 4px rgba(55,200,113,.18);animation:pulse 2s infinite}
@@ -102,11 +102,11 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;max-widt
 .sec-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:52px}
 .sec-head h2{font-size:clamp(34px,5vw,58px)}
 .sec-sub{color:var(--muted);font-size:18px;max-width:600px;margin-bottom:48px}
-.works{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(18px,2vw,26px)}
-.work-card{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:4/3.2;background:var(--line);display:block}
-.work-card img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--tr)}
+.works{column-width:260px;column-gap:clamp(16px,1.8vw,24px)}
+.work-card{position:relative;border-radius:var(--radius);overflow:hidden;background:var(--line);display:block;break-inside:avoid;-webkit-column-break-inside:avoid;page-break-inside:avoid;margin:0 0 clamp(16px,1.8vw,24px)}
+.work-card img{width:100%;height:auto;display:block;object-fit:cover;transition:transform 1s var(--tr)}
 .work-card:hover img{transform:scale(1.06)}
-.work-card .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(0,0,0,.6) 100%);transition:opacity var(--tr)}
+.work-card .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.45) 62%,rgba(0,0,0,.85) 100%);transition:opacity var(--tr)}
 .work-meta{position:absolute;left:32px;bottom:30px;right:32px;z-index:2}
 .work-meta h3{color:#fff;font-size:26px;margin-bottom:14px}
 .chips{display:flex;gap:9px;flex-wrap:wrap}
@@ -114,7 +114,7 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;max-widt
 .work-card:hover .chip{background:rgba(255,255,255,.15)}
 .work-open{position:absolute;top:24px;right:24px;z-index:2;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;color:#fff;font-size:17px;opacity:0;transform:scale(.8);transition:all var(--tr)}
 .work-card:hover .work-open{opacity:1;transform:scale(1)}
-@media(max-width:760px){.works{grid-template-columns:1fr}}
+@media(max-width:760px){.works{columns:1}}
 .about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(32px,4vw,64px);align-items:center}
 .about-photo img{border-radius:var(--radius);width:100%;aspect-ratio:1;object-fit:cover}
 .about-grid h2{font-size:clamp(30px,4vw,48px);margin-bottom:24px}
@@ -282,7 +282,7 @@ footer{padding:48px 0}
 /* ===== RESPONSIVE: TABLET ===== */
 @media(max-width:1024px){
 .wrap{padding:0 32px}
-.section{padding:84px 0}
+.section{padding-top:84px;padding-bottom:84px}
 .hero{padding:130px 0 0}
 .hero-stage{gap:32px}
 .hero-left h1{font-size:clamp(40px,6vw,58px)}
@@ -299,7 +299,7 @@ footer{padding:48px 0}
 @media(max-width:768px){
 .nav-links{display:none}
 .menu-btn{display:flex}
-.works{grid-template-columns:1fr}
+.works{columns:1}
 .testi{grid-template-columns:1fr}
 .about-grid{grid-template-columns:1fr;gap:32px}
 .gear-row{grid-template-columns:1fr}
@@ -315,7 +315,7 @@ footer{padding:48px 0}
 /* ===== RESPONSIVE: MOBILE ===== */
 @media(max-width:600px){
 .wrap{padding:0 16px}
-.section{padding:64px 0}
+.section{padding-top:64px;padding-bottom:64px}
 nav{padding:18px 0}
 nav.scrolled{padding:12px 0}
 .hero{padding:108px 0 0}
@@ -366,7 +366,7 @@ img,svg,video,canvas{max-width:100%;height:auto}
 @media(max-width:380px){.stats{grid-template-columns:1fr}}
 @media(max-width:900px){.setup-metrics{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:440px){.setup-metrics{grid-template-columns:1fr}}
-@media(max-height:520px) and (orientation:landscape){.hero{padding:96px 0 0}.section{padding:48px 0}}
+@media(max-height:520px) and (orientation:landscape){.hero{padding:96px 0 0}.section{padding-top:48px;padding-bottom:48px}}
 
 /* ===== TASK MANAGEMENT / OPS SECTION ===== */
 .ops-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:clamp(14px,1.6vw,18px);margin-top:clamp(28px,4vw,42px)}
@@ -506,7 +506,6 @@ img,svg,video,canvas{max-width:100%;height:auto}
 <a href="javascript:void(0)" class="work-card open-modal reveal rv-zoom" data-modal="m1"><img src="assets/imgs/folio-1.jpg" alt="Copy Ninjas"><div class="veil"></div><div class="work-open"><i class="ti-zoom-in"></i></div><div class="work-meta"><h3>Copy Ninjas</h3><div class="chips"><span class="chip">WordPress</span><span class="chip">AWS</span><span class="chip">Elementor</span></div></div></a>
 <a href="javascript:void(0)" class="work-card open-modal reveal rv-zoom d1" data-modal="m2"><img src="assets/imgs/folio-2.jpg" alt="Digital Solopreneur"><div class="veil"></div><div class="work-open"><i class="ti-zoom-in"></i></div><div class="work-meta"><h3>Digital Solopreneur</h3><div class="chips"><span class="chip">WordPress</span><span class="chip">Thrive Builder</span></div></div></a>
 <a href="javascript:void(0)" class="work-card open-modal reveal rv-zoom" data-modal="m3"><img src="assets/imgs/folio-3.jpg" alt="Culleys"><div class="veil"></div><div class="work-open"><i class="ti-zoom-in"></i></div><div class="work-meta"><h3>Culleys</h3><div class="chips"><span class="chip">Shopify</span><span class="chip">eCommerce</span></div></div></a>
-<a href="javascript:void(0)" class="work-card open-modal reveal rv-zoom d1" data-modal="m4"><img src="assets/imgs/folio-4.jpg" alt="Hire Engage"><div class="veil"></div><div class="work-open"><i class="ti-zoom-in"></i></div><div class="work-meta"><h3>Hire Engage</h3><div class="chips"><span class="chip">WordPress</span><span class="chip">GoHighLevel</span></div></div></a>
 <a href="javascript:void(0)" class="work-card open-modal reveal rv-zoom" data-modal="m7"><img src="assets/imgs/mancandy.png" alt="Man Candy Beef Jerky"><div class="veil"></div><div class="work-open"><i class="ti-zoom-in"></i></div><div class="work-meta"><h3>Man Candy Beef Jerky</h3><div class="chips"><span class="chip">Shopify</span><span class="chip">Figma to Code</span></div></div></a>
 <a href="javascript:void(0)" class="work-card open-modal reveal rv-zoom d1" data-modal="m5"><img src="assets/imgs/folio-5.jpg" alt="Inbox Society"><div class="veil"></div><div class="work-open"><i class="ti-zoom-in"></i></div><div class="work-meta"><h3>Inbox Society</h3><div class="chips"><span class="chip">Kartra</span><span class="chip">Email Funnels</span></div></div></a>
 <a href="javascript:void(0)" class="work-card open-modal reveal rv-zoom" data-modal="m6"><img src="assets/imgs/folio-6.jpg" alt="Joons Solutions"><div class="veil"></div><div class="work-open"><i class="ti-zoom-in"></i></div><div class="work-meta"><h3>Joons Solutions</h3><div class="chips"><span class="chip">WordPress</span><span class="chip">Job Listings</span></div></div></a>
@@ -516,7 +515,6 @@ img,svg,video,canvas{max-width:100%;height:auto}
 <div id="m1" class="mback"><div class="mbox"><button class="mclose">&times;</button><h4>Copy Ninjas</h4><p>For this project, we utilized WordPress and hosted it on an AWS server. Built with Elementor, it includes various integrated plugins to enhance functionality and user experience. The combination of AWS hosting and Elementor's flexibility ensured a robust and scalable website solution.</p><p><a href="https://copyninjas.io/" target="_blank">Visit Copy Ninjas &rarr;</a></p></div></div>
 <div id="m2" class="mback"><div class="mbox"><button class="mclose">&times;</button><h4>Digital Solopreneur</h4><p>Developed with WordPress and Thrive Builder, this is one of the WordPress sites I created for a previous employer. The project focused on creating a dynamic and interactive site, incorporating advanced design elements and optimizing it for speed and SEO.</p><p><a href="https://digitalsolopreneur.com/" target="_blank">Visit Digital Solopreneur &rarr;</a></p></div></div>
 <div id="m3" class="mback"><div class="mbox"><button class="mclose">&times;</button><h4>Culleys</h4><p>Using the Shopify Debut theme, this eCommerce site was developed during my tenure at a previous company. The project involved customizing the theme to meet client specifications, integrating necessary plugins, and optimizing the site for performance and user experience.</p><p><a href="https://culleys.co.nz/" target="_blank">Visit Culleys &rarr;</a></p></div></div>
-<div id="m4" class="mback"><div class="mbox"><button class="mclose">&times;</button><h4>Hire Engage</h4><p>A standout project using WordPress and Elementor Builder, where we implemented GoHighLevel integration for enhanced functionality. This project demonstrated my ability to integrate CRM tools, streamline business processes, and deliver a highly efficient and user-friendly website.</p><p><a href="https://hireengage.com/" target="_blank">Visit Hire Engage &rarr;</a></p></div></div>
 <div id="m5" class="mback"><div class="mbox"><button class="mclose">&times;</button><h4>Inbox Society</h4><p>This project was built on the Kartra platform, showcasing one of the SaaS solutions I developed at a former company. It involved creating and managing complex marketing funnels, integrating email automation, and ensuring seamless user experience for a diverse client base.</p><p><a href="https://www.inboxsociety.com/" target="_blank">Visit Inbox Society &rarr;</a></p></div></div>
 <div id="m6" class="mback"><div class="mbox"><button class="mclose">&times;</button><h4>Joons Solutions</h4><p>This project involved WordPress, Elementor Builder, and various job listings plugins for a comprehensive site solution. It included customizing the job listings functionality, ensuring smooth user interactions, and optimizing the site for search engines and user engagement.</p><p><a href="https://joonsolutions.com/" target="_blank">Visit Joons Solutions &rarr;</a></p></div></div>
 <div id="m7" class="mback"><div class="mbox"><button class="mclose">&times;</button><h4>Man Candy</h4><p>This project is one of the websites I successfully converted from Figma designs into a fully functional Shopify store: Man Candy Beef Jerky. The development included implementing custom functionalities on both the front end and back end, tailored to the specific requirements of an e-commerce platform, showcasing my expertise in creating responsive and efficient Shopify websites.</p><p><a href="https://mancandybeefjerky.com/" target="_blank">Visit Man Candy &rarr;</a></p></div></div>

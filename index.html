@@ -409,6 +409,26 @@ img,svg,video,canvas{max-width:100%;height:auto}
 .work-card:hover .wc-view i{transform:translateX(3px)}
 .work-card .wc-live{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#37ffa3}
 .work-card .wc-live::before{content:"";width:6px;height:6px;border-radius:50%;background:#37ffa3;box-shadow:0 0 0 0 rgba(55,255,163,.5);animation:pulse 2s infinite}
+
+/* === Mobile header glow-up (added) === */
+@media(max-width:600px){
+.hero{position:relative;padding:108px 0 0;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-12%;left:50%;transform:translateX(-50%);width:140%;height:62%;background:radial-gradient(60% 60% at 50% 30%,rgba(124,92,255,.30),rgba(124,92,255,0) 70%);filter:blur(8px);z-index:0;pointer-events:none;animation:heroGlow 7s ease-in-out infinite}
+@keyframes heroGlow{0%,100%{opacity:.7;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.08)}}
+.hero-stage{position:relative;z-index:2}
+.pill-status{background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.55));-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(124,92,255,.28);box-shadow:0 8px 24px rgba(124,92,255,.16);padding:8px 16px;border-radius:30px;font-weight:600;color:var(--ink)}
+.hero-left h1{font-size:clamp(40px,11vw,56px);letter-spacing:-.045em;line-height:1.0;margin-bottom:20px}
+.hero-left h1 .grad{filter:drop-shadow(0 6px 22px rgba(124,92,255,.30));animation-duration:6s}
+.hero-left p.lead{font-size:16px;max-width:30ch}
+.hero-cta-row .btn{flex:1 1 auto;justify-content:center;border-radius:30px}
+.hero-cta-row .btn-dark{background:linear-gradient(120deg,#16150f,#3a2d7a 60%,#7c5cff);box-shadow:0 12px 30px rgba(124,92,255,.32);border:none}
+.hero-cta-row .btn-ghost{background:rgba(255,255,255,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(124,92,255,.3)}
+.hero-socials{justify-content:center}
+.hero-socials a{width:46px;height:46px;background:linear-gradient(180deg,#fff,#f3f0ff);border:1px solid rgba(124,92,255,.28);box-shadow:0 6px 16px rgba(124,92,255,.14)}
+.hero-socials a:hover{background:linear-gradient(120deg,#7c5cff,#6a4cf0);color:#fff;border-color:transparent}
+.hero-portrait{position:relative;max-width:min(340px,72vw)}
+.hero-portrait::after{content:'';position:absolute;inset:-10px;border-radius:50%;background:radial-gradient(circle at 50% 35%,rgba(124,92,255,.28),rgba(124,92,255,0) 65%);z-index:-1;animation:heroGlow 7s ease-in-out infinite}
+}
 </style>
 <script type="application/ld+json">
 {

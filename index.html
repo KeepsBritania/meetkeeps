@@ -279,6 +279,35 @@ h1,h2,h3,h4{font-family:var(--font-d);font-weight:600;line-height:1.02;letter-sp
   .manifesto .w{color:var(--ink)!important}
   *{transition-duration:.01ms!important}
 }
+
+/* ========== FX LAYER: cursor · morph · previews (fine pointers, desktop) ========== */
+#cursorDot,#cursorRing,#svcPreview,#morphLayer{display:none}
+body.fx{cursor:none}
+body.fx a,body.fx button,body.fx input,body.fx textarea,body.fx .proj-card{cursor:none}
+body.fx #cursorDot{display:block}
+body.fx #cursorRing{display:flex}
+body.fx #svcPreview{display:block}
+#cursorDot{position:fixed;top:0;left:0;width:7px;height:7px;border-radius:50%;background:#fff;z-index:1000;pointer-events:none;mix-blend-mode:difference;will-change:transform}
+#cursorRing{position:fixed;top:0;left:0;width:38px;height:38px;border-radius:50%;border:1.5px solid #fff;z-index:999;pointer-events:none;mix-blend-mode:difference;align-items:center;justify-content:center;background:rgba(255,255,255,0);transition:width .35s var(--ease),height .35s var(--ease),background-color .35s var(--ease),opacity .3s ease;will-change:transform}
+#cursorRing .cl{font-family:var(--font-d);font-size:10.5px;font-weight:700;letter-spacing:.14em;color:#fff;opacity:0;transition:opacity .25s ease;white-space:nowrap}
+#cursorRing.grow{width:58px;height:58px;background:rgba(255,255,255,.14)}
+#cursorRing.view{width:96px;height:96px;background:rgba(255,255,255,.18);backdrop-filter:blur(2px)}
+#cursorRing.view .cl{opacity:1}
+#cursorRing.hide{opacity:0}
+#morphLayer{position:fixed;top:0;left:0;z-index:140;pointer-events:none;overflow:hidden;box-shadow:0 30px 70px rgba(17,17,17,.28);will-change:transform,width,height,border-radius;background:var(--charcoal)}
+#morphLayer img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#morphLayer .m1{filter:grayscale(28%) contrast(1.06) brightness(.92)}
+#morphLayer .m2{opacity:0;filter:saturate(.85) contrast(1.05)}
+#morphLayer .mtint{position:absolute;inset:0;background:linear-gradient(160deg,rgba(224,30,30,.34),rgba(224,30,30,0) 55%);mix-blend-mode:multiply;opacity:0}
+#svcPreview{position:fixed;top:0;left:0;z-index:450;width:min(270px,26vw);aspect-ratio:4/3;border-radius:16px;overflow:hidden;pointer-events:none;opacity:0;box-shadow:0 30px 70px rgba(17,17,17,.4);transition:opacity .35s var(--ease);will-change:transform}
+#svcPreview img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.12);transition:opacity .35s ease,transform .8s var(--ease)}
+#svcPreview img.on{opacity:1;transform:scale(1)}
+#svcPreview.show{opacity:1}
+body.fx .proj-thumb img,body.fx .th-card .bg img{transition:filter .6s ease;will-change:transform}
+body.fx .hero h1,body.fx .testi-ghost{will-change:transform}
+body.fx .hero-portrait .frame{will-change:transform}
+body.fx .svc-row{cursor:none}
+@media(prefers-reduced-motion:reduce){body.fx{cursor:auto}#cursorDot,#cursorRing,#svcPreview,#morphLayer{display:none!important}}
 </style>
 <script type="application/ld+json">
 {
@@ -322,6 +351,21 @@ h1,h2,h3,h4{font-family:var(--font-d);font-weight:600;line-height:1.02;letter-sp
 </script>
 </head>
 <body>
+
+<!-- FX layer -->
+<div id="cursorDot" aria-hidden="true"></div>
+<div id="cursorRing" aria-hidden="true"><span class="cl">VIEW &#8599;</span></div>
+<div id="svcPreview" aria-hidden="true">
+  <img src="assets/imgs/folio-1.jpg" alt="" data-pv="0">
+  <img src="assets/imgs/folio-3.jpg" alt="" data-pv="1">
+  <img src="assets/imgs/folio-5.jpg" alt="" data-pv="2">
+  <img src="assets/imgs/folio-6.jpg" alt="" data-pv="3">
+</div>
+<div id="morphLayer" aria-hidden="true">
+  <img class="m1" src="assets/imgs/person.webp" alt="">
+  <img class="m2" src="assets/imgs/avatar-5.jpg" alt="">
+  <div class="mtint"></div>
+</div>
 
 <!-- ============ 1. STICKY PILL NAV ============ -->
 <div class="navbar">
@@ -406,10 +450,10 @@ h1,h2,h3,h4{font-family:var(--font-d);font-weight:600;line-height:1.02;letter-sp
       <div><span class="label">Services</span><h2>Services</h2></div>
     </div>
     <div class="svc-list">
-      <div class="svc-row rv"><h3>Web Development</h3><div class="svc-tags"><span>WordPress</span><span>Shopify</span><span>Custom Builds</span></div></div>
-      <div class="svc-row rv"><h3>AI Automation</h3><div class="svc-tags"><span>LLM Integration</span><span>AI Agents</span><span>RAG Flows</span></div></div>
-      <div class="svc-row rv"><h3>Email &amp; Funnels</h3><div class="svc-tags"><span>GoHighLevel</span><span>Kartra</span><span>ClickFunnels</span></div></div>
-      <div class="svc-row rv"><h3>Ops &amp; Workflow</h3><div class="svc-tags"><span>Asana</span><span>ClickUp</span><span>Slack Integrations</span></div></div>
+      <div class="svc-row rv" data-pv="0"><h3>Web Development</h3><div class="svc-tags"><span>WordPress</span><span>Shopify</span><span>Custom Builds</span></div></div>
+      <div class="svc-row rv" data-pv="1"><h3>AI Automation</h3><div class="svc-tags"><span>LLM Integration</span><span>AI Agents</span><span>RAG Flows</span></div></div>
+      <div class="svc-row rv" data-pv="2"><h3>Email &amp; Funnels</h3><div class="svc-tags"><span>GoHighLevel</span><span>Kartra</span><span>ClickFunnels</span></div></div>
+      <div class="svc-row rv" data-pv="3"><h3>Ops &amp; Workflow</h3><div class="svc-tags"><span>Asana</span><span>ClickUp</span><span>Slack Integrations</span></div></div>
     </div>
   </div>
 </section>
@@ -717,6 +761,216 @@ form.addEventListener('submit', function(ev){
     statusEl.textContent = 'Message failed to send. Please email kjbritz@gmail.com instead.';
     statusEl.className = 'bad';
   });
+});
+})();
+</script>
+<script>
+/* ================================================================
+   FX ENGINE — custom cursor · hero→about image morph · parallax
+   tilt · magnetic buttons · service image previews
+   Desktop fine-pointer only; respects prefers-reduced-motion.
+   ================================================================ */
+(function(){
+"use strict";
+var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var fine = window.matchMedia('(pointer: fine)').matches;
+if (reduced || !fine || window.innerWidth < 861) return;
+document.body.classList.add('fx');
+
+var vw = window.innerWidth, vh = window.innerHeight;
+var scrollY = window.scrollY;
+function lerp(a,b,n){ return a + (b - a) * n; }
+function clamp(v,a,b){ return Math.max(a, Math.min(b, v)); }
+function ease(t){ return t < .5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2)/2; }
+
+/* ---------- mouse state ---------- */
+var mx = vw/2, my = vh/2;
+window.addEventListener('mousemove', function(e){ mx = e.clientX; my = e.clientY; }, { passive: true });
+
+/* ---------- custom cursor ---------- */
+var dot = document.getElementById('cursorDot');
+var ring = document.getElementById('cursorRing');
+var dx = mx, dy = my, rx = mx, ry = my;
+document.addEventListener('mouseover', function(e){
+  var t = e.target;
+  ring.classList.remove('view','grow','hide');
+  if (t.closest('.proj-card') || t.closest('.th-card')) ring.classList.add('view');
+  else if (t.closest('.svc-row')) ring.classList.add('hide');
+  else if (t.closest('a,button,input,textarea,label,.p-menu')) ring.classList.add('grow');
+});
+document.addEventListener('mouseleave', function(){ dot.style.opacity = 0; ring.style.opacity = 0; });
+document.addEventListener('mouseenter', function(){ dot.style.opacity = 1; ring.style.opacity = ''; });
+
+/* ---------- magnetic elements ---------- */
+document.querySelectorAll('.btn,.p-menu,.link-arrow').forEach(function(el){
+  el.addEventListener('mousemove', function(e){
+    var r = el.getBoundingClientRect();
+    var ox = (e.clientX - r.left - r.width/2) * .3;
+    var oy = (e.clientY - r.top - r.height/2) * .3;
+    el.style.transform = 'translate(' + ox.toFixed(1) + 'px,' + oy.toFixed(1) + 'px)';
+  });
+  el.addEventListener('mouseleave', function(){ el.style.transform = ''; });
+});
+
+/* ---------- hero portrait 3D tilt ---------- */
+var heroPortrait = document.querySelector('.hero-portrait');
+var heroFrame = document.querySelector('.hero-portrait .frame');
+if (heroPortrait && heroFrame){
+  heroFrame.style.transition = 'transform .25s ease-out';
+  heroPortrait.addEventListener('mousemove', function(e){
+    var r = heroFrame.getBoundingClientRect();
+    var px = (e.clientX - r.left) / r.width - .5;
+    var py = (e.clientY - r.top) / r.height - .5;
+    heroFrame.style.transform = 'perspective(750px) rotateX(' + (-py*9).toFixed(2) + 'deg) rotateY(' + (px*9).toFixed(2) + 'deg)';
+  });
+  heroPortrait.addEventListener('mouseleave', function(){ heroFrame.style.transform = ''; });
+}
+
+/* ---------- parallax + hover zoom (JS-driven, no CSS fights) ---------- */
+var pxItems = [];
+document.querySelectorAll('.proj-thumb').forEach(function(box){
+  var img = box.querySelector('img');
+  var card = box.closest('.proj-card');
+  var it = { box: box, img: img, s: 1.14, target: 1.14, base: 1.14, hover: 1.24, amt: -0.07 };
+  card.addEventListener('mouseenter', function(){ it.target = it.hover; });
+  card.addEventListener('mouseleave', function(){ it.target = it.base; });
+  pxItems.push(it);
+});
+document.querySelectorAll('.th-card .bg').forEach(function(box){
+  var img = box.querySelector('img');
+  var card = box.closest('.th-card');
+  var it = { box: box, img: img, s: 1.1, target: 1.1, base: 1.1, hover: 1.18, amt: -0.05 };
+  card.addEventListener('mouseenter', function(){ it.target = it.hover; });
+  card.addEventListener('mouseleave', function(){ it.target = it.base; });
+  pxItems.push(it);
+});
+
+/* ---------- service row cursor-following previews ---------- */
+var svcPrev = document.getElementById('svcPreview');
+var svcImgs = svcPrev ? svcPrev.querySelectorAll('img') : [];
+var svcActive = -1, spx = mx, spy = my;
+document.querySelectorAll('.svc-row[data-pv]').forEach(function(row){
+  var idx = parseInt(row.getAttribute('data-pv'), 10);
+  row.addEventListener('mouseenter', function(){
+    svcActive = idx;
+    svcImgs.forEach(function(im){ im.classList.toggle('on', parseInt(im.getAttribute('data-pv'),10) === idx); });
+    svcPrev.classList.add('show');
+  });
+  row.addEventListener('mouseleave', function(){
+    svcActive = -1;
+    svcPrev.classList.remove('show');
+  });
+});
+
+/* ---------- scroll-linked type motion ---------- */
+var heroH1 = document.querySelector('.hero h1');
+var ghost = document.querySelector('.testi-ghost');
+
+/* ---------- HERO → ABOUT shared-element morph ---------- */
+var morph = document.getElementById('morphLayer');
+var m2 = morph ? morph.querySelector('.m2') : null;
+var mtint = morph ? morph.querySelector('.mtint') : null;
+var aboutPhoto = document.querySelector('.about-photo');
+var aboutCard = document.querySelector('.about-photo .card');
+var mStart = null, mEnd = null, mS0 = 0, mS1 = 1, morphOK = false, morphState = '';
+
+function docRect(el, resetTransform){
+  var pT, pTr;
+  if (resetTransform){ pT = el.style.transform; pTr = el.style.transition; el.style.transition = 'none'; el.style.transform = 'none'; void el.offsetWidth; }
+  var r = el.getBoundingClientRect();
+  var out = { x: r.left, y: r.top + window.scrollY, w: r.width, h: r.height };
+  if (resetTransform){ el.style.transform = pT; el.style.transition = pTr; }
+  return out;
+}
+function measureMorph(){
+  if (!heroFrame || !aboutCard || !morph) return;
+  mStart = docRect(heroFrame, true);
+  mEnd = docRect(aboutCard, true);
+  mS0 = mStart.y - (vh - mStart.h) / 2;
+  mS1 = mEnd.y - (vh - mEnd.h) / 2;
+  morphOK = (mS1 - mS0) > 120;
+}
+if (heroFrame && aboutCard && morph){
+  aboutPhoto.classList.remove('rv','rd1');
+  aboutPhoto.classList.add('vis');
+  window.addEventListener('load', function(){ setTimeout(measureMorph, 1600); });
+  setTimeout(measureMorph, 2000);
+  measureMorph();
+}
+function setMorphState(s){
+  if (morphState === s) return;
+  morphState = s;
+  if (s === 'pre'){ morph.style.display = 'none'; heroPortrait.style.visibility = ''; aboutPhoto.style.visibility = 'hidden'; }
+  else if (s === 'post'){ morph.style.display = 'none'; heroPortrait.style.visibility = 'hidden'; aboutPhoto.style.visibility = ''; }
+  else { morph.style.display = 'block'; heroPortrait.style.visibility = 'hidden'; aboutPhoto.style.visibility = 'hidden'; }
+}
+function morphTick(){
+  if (!morphOK) return;
+  var p = (scrollY - mS0) / (mS1 - mS0);
+  if (p <= 0){ setMorphState('pre'); return; }
+  if (p >= 1){ setMorphState('post'); return; }
+  setMorphState('mid');
+  var x = lerp(mStart.x, mEnd.x, p);
+  var y = lerp(mStart.y, mEnd.y, p) - scrollY;
+  var w = lerp(mStart.w, mEnd.w, p);
+  var h = lerp(mStart.h, mEnd.h, p);
+  morph.style.width = w + 'px';
+  morph.style.height = h + 'px';
+  morph.style.borderRadius = lerp(22, 20, p) + 'px';
+  morph.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0) rotate(' + (p * 3.5) + 'deg)';
+  m2.style.opacity = clamp((p - .3) / .4, 0, 1);
+  mtint.style.opacity = ease(p);
+}
+
+/* ---------- master rAF loop ---------- */
+function loop(){
+  scrollY = window.scrollY;
+
+  /* cursor lerp */
+  dx = lerp(dx, mx, .55); dy = lerp(dy, my, .55);
+  rx = lerp(rx, mx, .16); ry = lerp(ry, my, .16);
+  dot.style.transform = 'translate3d(' + (dx - 3.5) + 'px,' + (dy - 3.5) + 'px,0)';
+  var rHalf = ring.offsetWidth / 2;
+  ring.style.transform = 'translate3d(' + (rx - rHalf) + 'px,' + (ry - rHalf) + 'px,0)';
+
+  /* parallax + zoom */
+  for (var i = 0; i < pxItems.length; i++){
+    var it = pxItems[i];
+    var r = it.box.getBoundingClientRect();
+    if (r.bottom > -120 && r.top < vh + 120){
+      var py = (r.top + r.height/2 - vh/2) * it.amt;
+      it.s = lerp(it.s, it.target, .09);
+      it.img.style.transform = 'translate3d(0,' + py.toFixed(1) + 'px,0) scale(' + it.s.toFixed(4) + ')';
+    }
+  }
+
+  /* service preview follow + velocity tilt */
+  if (svcPrev){
+    var pvx = spx;
+    spx = lerp(spx, mx, .13); spy = lerp(spy, my, .13);
+    var rot = clamp((spx - pvx) * 1.6, -12, 12);
+    svcPrev.style.transform = 'translate3d(' + (spx + 30) + 'px,' + (spy - svcPrev.offsetHeight/2) + 'px,0) rotate(' + rot.toFixed(2) + 'deg)';
+  }
+
+  /* hero headline drift + ghost heading slide */
+  if (heroH1 && scrollY < vh * 1.3){
+    heroH1.style.transform = 'translate3d(0,' + (scrollY * .22).toFixed(1) + 'px,0)';
+  }
+  if (ghost){
+    var gr = ghost.getBoundingClientRect();
+    if (gr.top < vh + 100 && gr.bottom > -100){
+      ghost.style.transform = 'translate3d(' + ((gr.top - vh * .7) * .14).toFixed(1) + 'px,0,0)';
+    }
+  }
+
+  morphTick();
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+
+window.addEventListener('resize', function(){
+  vw = window.innerWidth; vh = window.innerHeight;
+  measureMorph();
 });
 })();
 </script>

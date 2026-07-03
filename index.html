@@ -280,6 +280,44 @@ h1,h2,h3,h4{font-family:var(--font-d);font-weight:600;line-height:1.02;letter-sp
   *{transition-duration:.01ms!important}
 }
 
+/* ---------- pinned process section (stationary stage, swapping content) ---------- */
+.pin-sec{position:relative;background:var(--charcoal);color:var(--cream);height:500vh;height:500svh}
+.pin-stage{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center;overflow:hidden}
+.pin-wrap{width:100%;position:relative}
+.pin-head{display:flex;align-items:center;justify-content:space-between;gap:24px;position:absolute;top:clamp(84px,12vh,120px);left:clamp(20px,4vw,48px);right:clamp(20px,4vw,48px)}
+.pin-head .label{color:var(--gray-2);margin-bottom:0}
+.pin-progress{flex:1;max-width:340px;height:1px;background:var(--line-dark);position:relative;overflow:hidden}
+.pin-progress i{position:absolute;inset:0;background:var(--red);transform-origin:left;transform:scaleX(0)}
+.pin-body{display:grid;grid-template-columns:auto 1fr;gap:clamp(28px,6vw,90px);align-items:center}
+.pin-num-mask{height:1em;overflow:hidden;font-family:var(--font-d);font-weight:700;font-size:clamp(110px,20vw,280px);line-height:1;letter-spacing:-.05em;color:rgba(242,239,234,.1);user-select:none}
+.pin-num-track{display:flex;flex-direction:column;transition:transform .8s var(--ease-out)}
+.pin-num-track span{display:block;height:1em}
+.pin-slides{position:relative;min-height:min(340px,46vh)}
+.pin-slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;opacity:0;pointer-events:none;transition:opacity .45s ease}
+.pin-slide .kick{font-family:var(--font-d);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:16px;opacity:0;transform:translateY(18px);transition:opacity .5s ease .05s,transform .6s var(--ease-out) .05s}
+.pin-slide h3{font-size:clamp(38px,6vw,84px);letter-spacing:-.04em;margin-bottom:20px}
+.pin-slide h3 .ln{display:block;overflow:hidden;padding-bottom:.06em}
+.pin-slide h3 .ln span{display:inline-block;transform:translateY(112%);transition:transform .75s var(--ease-out) .1s}
+.pin-slide p{color:var(--gray-2);font-size:clamp(15px,1.6vw,17px);max-width:46ch;opacity:0;transform:translateY(26px);transition:opacity .55s ease .2s,transform .7s var(--ease-out) .2s}
+.pin-slide.is-active{opacity:1;pointer-events:auto}
+.pin-slide.is-active .kick{opacity:1;transform:none}
+.pin-slide.is-active h3 .ln span{transform:translateY(0)}
+.pin-slide.is-active p{opacity:1;transform:none}
+.pin-slide.is-prev h3 .ln span{transform:translateY(-112%);transition-delay:0s}
+.pin-slide.is-prev .kick,.pin-slide.is-prev p{opacity:0;transform:translateY(-20px);transition-delay:0s}
+.pin-count{position:absolute;bottom:clamp(28px,6vh,54px);left:clamp(20px,4vw,48px);font-family:var(--font-d);font-size:14px;font-weight:600;letter-spacing:.1em;color:var(--gray-2)}
+.pin-count b{color:var(--red);font-weight:600}
+.pin-hint{position:absolute;bottom:clamp(28px,6vh,54px);right:clamp(20px,4vw,48px);font-family:var(--font-d);font-size:11.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-2);display:inline-flex;align-items:center;gap:9px}
+.pin-hint::after{content:"";width:1px;height:26px;background:var(--gray-2);animation:hintDrop 1.8s var(--ease) infinite}
+@keyframes hintDrop{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@media(max-width:760px){
+  .pin-body{grid-template-columns:1fr;gap:10px}
+  .pin-num-mask{font-size:clamp(80px,24vw,120px)}
+  .pin-head{flex-direction:column;align-items:flex-start;gap:14px}
+  .pin-progress{width:100%;max-width:none}
+  .pin-hint{display:none}
+}
+
 /* ========== FX LAYER: cursor · morph · previews (fine pointers, desktop) ========== */
 #cursorDot,#cursorRing,#svcPreview,#morphLayer{display:none}
 body.fx{cursor:none}
@@ -454,6 +492,54 @@ body.fx .svc-row{cursor:none}
       <div class="svc-row rv" data-pv="1"><h3>AI Automation</h3><div class="svc-tags"><span>LLM Integration</span><span>AI Agents</span><span>RAG Flows</span></div></div>
       <div class="svc-row rv" data-pv="2"><h3>Email &amp; Funnels</h3><div class="svc-tags"><span>GoHighLevel</span><span>Kartra</span><span>ClickFunnels</span></div></div>
       <div class="svc-row rv" data-pv="3"><h3>Ops &amp; Workflow</h3><div class="svc-tags"><span>Asana</span><span>ClickUp</span><span>Slack Integrations</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5.5 PINNED PROCESS (stationary stage, content swaps on scroll) ============ -->
+<section class="pin-sec" id="process" aria-label="How I work — five step process">
+  <div class="pin-stage">
+    <div class="wrap pin-wrap">
+      <div class="pin-head">
+        <span class="label">How I work</span>
+        <div class="pin-progress"><i id="pinBar"></i></div>
+      </div>
+      <div class="pin-body">
+        <div class="pin-num-mask" aria-hidden="true">
+          <div class="pin-num-track" id="pinNums">
+            <span>01</span><span>02</span><span>03</span><span>04</span><span>05</span>
+          </div>
+        </div>
+        <div class="pin-slides" id="pinSlides">
+          <article class="pin-slide is-active">
+            <div class="kick">Step one</div>
+            <h3><span class="ln"><span>Discover</span></span></h3>
+            <p>We start with a conversation about your goals, audience, and vision so I fully understand what success looks like for your project.</p>
+          </article>
+          <article class="pin-slide">
+            <div class="kick">Step two</div>
+            <h3><span class="ln"><span>Project Brief</span></span></h3>
+            <p>Once we&rsquo;re on the same page, we define the project scope, timeline, and deliverables. A structured brief ensures a smooth, efficient process.</p>
+          </article>
+          <article class="pin-slide">
+            <div class="kick">Step three</div>
+            <h3><span class="ln"><span>Develop</span></span></h3>
+            <p>This is where the magic happens. Thoughtful, responsive builds &mdash; often accelerated with AI tooling &mdash; refined on your feedback until the outcome meets your vision.</p>
+          </article>
+          <article class="pin-slide">
+            <div class="kick">Step four</div>
+            <h3><span class="ln"><span>Deliver</span></span></h3>
+            <p>The final product is polished and ready to go. Website, Shopify store, or AI automation setup &mdash; you receive everything needed for a seamless handoff.</p>
+          </article>
+          <article class="pin-slide">
+            <div class="kick">Step five</div>
+            <h3><span class="ln"><span>Support</span></span></h3>
+            <p>I stay available after launch to answer questions, make adjustments, and keep everything running smoothly as your business grows.</p>
+          </article>
+        </div>
+      </div>
+      <div class="pin-count"><b id="pinCur">01</b> / 05</div>
+      <div class="pin-hint">Keep scrolling</div>
     </div>
   </div>
 </section>
@@ -639,11 +725,46 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){
       if(el){
         e.preventDefault();
         var y = el.getBoundingClientRect().top + window.scrollY - 84;
-        window.scrollTo({ top: y, behavior: prefersReduced ? 'auto' : 'smooth' });
+        if(window.__scrollTo){ window.__scrollTo(y); }
+        else{ window.scrollTo({ top: y, behavior: prefersReduced ? 'auto' : 'smooth' }); }
       }
     }
   });
 });
+
+/* ----- pinned process section: stationary stage, content swaps on scroll ----- */
+var pinSec = document.querySelector('.pin-sec');
+if(pinSec){
+  var pinSlides = Array.prototype.slice.call(pinSec.querySelectorAll('.pin-slide'));
+  var pinNums = document.getElementById('pinNums');
+  var pinBar = document.getElementById('pinBar');
+  var pinCur = document.getElementById('pinCur');
+  var pinIdx = -1;
+  function pinTick(){
+    var r = pinSec.getBoundingClientRect();
+    var total = pinSec.offsetHeight - window.innerHeight;
+    if(total <= 0) return;
+    var p = Math.max(0, Math.min(1, -r.top / total));
+    var n = pinSlides.length;
+    var idx = Math.min(n - 1, Math.floor(p * n));
+    if(idx !== pinIdx){
+      pinIdx = idx;
+      pinSlides.forEach(function(s, i){
+        s.classList.toggle('is-active', i === idx);
+        s.classList.toggle('is-prev', i < idx);
+      });
+      pinNums.style.transform = 'translateY(' + (-idx * 100) + '%)';
+      pinCur.textContent = '0' + (idx + 1);
+    }
+    pinBar.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+  }
+  var pinRaf = false;
+  window.addEventListener('scroll', function(){
+    if(!pinRaf){ requestAnimationFrame(function(){ pinTick(); pinRaf = false; }); pinRaf = true; }
+  }, { passive: true });
+  window.addEventListener('resize', pinTick);
+  pinTick();
+}
 
 /* ----- scroll reveals ----- */
 var io = new IntersectionObserver(function(entries){
@@ -787,6 +908,34 @@ function ease(t){ return t < .5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2)/2; }
 var mx = vw/2, my = vh/2;
 window.addEventListener('mousemove', function(e){ mx = e.clientX; my = e.clientY; }, { passive: true });
 
+/* ---------- inertial smooth scrolling (Lenis-style) ---------- */
+document.documentElement.style.scrollBehavior = 'auto';
+var stTarget = scrollY, stCur = scrollY, lastWheel = 0;
+function maxScroll(){ return document.documentElement.scrollHeight - vh; }
+window.addEventListener('wheel', function(e){
+  if (e.ctrlKey) return; /* let browser zoom work */
+  e.preventDefault();
+  if (document.querySelector('.mback.open')) return; /* freeze page behind modals */
+  var d = e.deltaY;
+  if (e.deltaMode === 1) d *= 16; else if (e.deltaMode === 2) d *= vh;
+  stTarget = clamp(stTarget + d, 0, maxScroll());
+  lastWheel = performance.now();
+}, { passive: false });
+window.__scrollTo = function(y){
+  stTarget = clamp(y, 0, maxScroll());
+  lastWheel = performance.now();
+};
+function smoothScrollTick(){
+  var native = window.scrollY;
+  /* adopt external scroll (scrollbar drag, keyboard) when we're not driving */
+  if (Math.abs(native - stCur) > 2 && performance.now() - lastWheel > 160){
+    stCur = stTarget = native;
+  }
+  stCur = lerp(stCur, stTarget, .095);
+  if (Math.abs(stCur - stTarget) < .1) stCur = stTarget;
+  if (Math.abs(stCur - native) > .4) window.scrollTo(0, stCur);
+}
+
 /* ---------- custom cursor ---------- */
 var dot = document.getElementById('cursorDot');
 var ring = document.getElementById('cursorRing');
@@ -924,6 +1073,7 @@ function morphTick(){
 
 /* ---------- master rAF loop ---------- */
 function loop(){
+  smoothScrollTick();
   scrollY = window.scrollY;
 
   /* cursor lerp */
